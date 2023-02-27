@@ -57,12 +57,12 @@ export const Navbar = () => {
         className="text-slate-400 font-semibold px-6"
         onClick={(e) => activeClassName(e)}
       >
-        <div className="flex items-center py-4 gap-x-2 text-blue-400  hover:bg-slate-600/30 rounded-lg ">
+        <div className="flex items-center py-4 gap-x-2 text-blue-400  hover:bg-[#4c426e]/30 rounded-lg ">
           <AiOutlineHome className="w-6 h-6" />
           <Link to={"#"}>Discover</Link>
         </div>
         <div
-          className={` flex items-center py-4 gap-x-2  hover:bg-slate-600/30 rounded-lg  ${
+          className={` flex items-center py-4 gap-x-2  hover:bg-[#4c426e]/30  rounded-lg  ${
             click.Around_You ? "text-blue-400" : null
           } `}
         >
@@ -70,7 +70,7 @@ export const Navbar = () => {
           <Link to={"#"}> Around You</Link>
         </div>
         <div
-          className={` flex items-center py-4 gap-x-2  hover:bg-slate-600/30 rounded-lg  ${
+          className={` flex items-center py-4 gap-x-2  hover:bg-[#4c426e]/30  rounded-lg  ${
             click["Top Artists"] ? "text-blue-400" : null
           }`}
         >
@@ -78,7 +78,7 @@ export const Navbar = () => {
           <Link to={"#"}> Top Artists</Link>
         </div>
         <div
-          className={` flex items-center py-4 gap-x-2   hover:bg-slate-600/30 rounded-lg ${
+          className={` flex items-center py-4 gap-x-2   hover:bg-[#4c426e]/30  rounded-lg ${
             click["Top Charts"] ? "text-blue-400" : null
           }`}
         >

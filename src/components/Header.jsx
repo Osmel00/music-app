@@ -12,7 +12,7 @@ export const Header = () => {
   };
 
   return (
-    <div className=" m-w-[90%] px-5 py-4 flex items-center justify-between">
+    <div className=" m-w-[90%] py-4 flex items-center justify-between">
       <div className="search-container flex  gap-x-2 items-center ">
         <FiSearch className="text-slate-50" />
         <input
