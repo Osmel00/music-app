@@ -12,7 +12,7 @@ export const Card = ({ img, titleSong, author }) => {
               className="w-48 h-48 xl:w-56 xl:h-56 object-cover"/>
           </div>
           <h3 className="mt-4 text-lg text-white/90 font-bold max-w-[192px] ">{titleSong}</h3>
-          <p className="mt-1 text-sm font-medium text-gray-300">{author}</p>
+          <p className="mt-1 text-sm font-medium text-gray-300 md:w-52">{author}</p>
         </div>
       
     </div>

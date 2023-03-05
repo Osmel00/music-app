@@ -2,7 +2,7 @@ import { Header } from "../components/Header";
 import MusicPlayer from "../MusicPlayer/index";
 import { Charts } from "../components/Charts";
 
-//import { useGetTopChartsQuery } from "../app/apiServices";
+import { useGetTopChartsQuery } from "../app/apiServices";
 import { Artist } from "../components/Artist";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
@@ -11,15 +11,15 @@ import { Logo } from "../components/Logo";
 import { genres } from "../assets/objConstants";
 import { Outlet } from "react-router";
 export const RootLayout = () => {
-  // const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
+   const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
 
-  // if (isLoading) return "Loading....";
-  // if (isError) {
-  //   return error.message;
-  // }
-  // const topChart5 = topChart.slice(0, 5);
+  if (isLoading) return "Loading....";
+  if (isError) {
+    return error.message;
+  }
+  const topChart5 = topChart.slice(0, 5);
 
-  // console.log(topChart);
+  console.log(topChart);
   const products = [
     {
       id: 1,
@@ -92,27 +92,27 @@ export const RootLayout = () => {
           <p className="text-white/60 ">See more</p>
         </div>
 
-        {products?.map((item, index) => {
-          // return (
-          //   <div key={item.key}>
-          //     <Charts
-          //       index={index + 1 + "."}
-          //       titleSong={item.title}
-          //       author={item.subtitle}
-          //       img={item.images?.coverart}
-          //     />
-          //   </div>
+        {topChart5?.map((item, index) => {
           return (
-            <div key={item.id}>
+            <div key={item.key}>
               <Charts
                 index={index + 1 + "."}
-                titleSong={item.name}
-                author={item.price}
-                img={item.imageSrc}
+                titleSong={item.title}
+                author={item.subtitle}
+                img={item.images?.coverart}
               />
             </div>
-          );
-        })}
+          // return (
+          //   <div key={item.id}>
+          //     <Charts
+          //       index={index + 1 + "."}
+          //       titleSong={item.name}
+          //       author={item.price}
+          //       img={item.imageSrc}
+          //     />
+          //   </div>
+          // );
+        )})}
       </div>
 
       <div className="top-artist pt-5 pb-12 md:px-2 md:h-max md:w-[calc(95vw_-_14rem)]  md:col-start-2 md:col-end-[-1] md:row-start-3 md:row-end-4 lg:col-start-3 lg:w-[calc(95vw_-_14rem_-_320px)] lg:max-w-[500px] ">
@@ -129,29 +129,29 @@ export const RootLayout = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {products?.map((item) => {
-            // return (
-            //   <SwiperSlide
-            //     key={item.key}
-            //     className="shadow-lg rounded-full animate-slideright"
-            //     style={{ width: "25%", maxWidth: "120px", height: "auto" }}
-            //   >
-            //     <div>
-            //       <Artist img={item.images?.background} />
-            //     </div>
-            //   </SwiperSlide>
-            // );
+          {topChart5?.map((item) => {
             return (
               <SwiperSlide
-                key={item.id}
+                key={item.key}
                 className="shadow-lg rounded-full animate-slideright"
                 style={{ width: "25%", maxWidth: "120px", height: "auto" }}
               >
                 <div>
-                  <Artist img={item.imageSrc} />
+                  <Artist img={item.images?.background} />
                 </div>
               </SwiperSlide>
             );
+            // return (
+            //   <SwiperSlide
+            //     key={item.id}
+            //     className="shadow-lg rounded-full animate-slideright"
+            //     style={{ width: "25%", maxWidth: "120px", height: "auto" }}
+            //   >
+            //     <div>
+            //       <Artist img={item.imageSrc} />
+            //     </div>
+            //   </SwiperSlide>
+            // );
           })}
         </Swiper>
       </div>
