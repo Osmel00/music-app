@@ -52,9 +52,9 @@ export const Navbar = () => {
   };
 
   return (
-    <div>
+    <div className="md:ml-4">
       <div
-        className="text-slate-400 font-semibold px-6"
+        className="text-white/80 md:text-slate-400 font-semibold md:w-56"
         onClick={(e) => activeClassName(e)}
       >
         <div className="flex items-center py-4 gap-x-2 text-blue-400  hover:bg-[#4c426e]/30 rounded-lg ">

@@ -12,3 +12,23 @@ body {
  
 }
 
+
+  /* Firefox */
+  * {
+    scrollbar-width: none;
+    scrollbar-color: #000000 black;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+     width: 0px; 
+  }
+
+  
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #130783;
+    border-radius: 21px;
+    border: 3px solid #130783;
+  }
+
