@@ -8,12 +8,19 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { Navbar } from "../components/Navbar";
 import { Logo } from "../components/Logo";
-import { genres } from "../assets/objConstants";
+import { Loader } from "../components/Loader";
 import { Outlet } from "react-router";
 export const RootLayout = () => {
    const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
 
-  if (isLoading) return "Loading....";
+  if (isLoading)  {
+    return (
+   <div className="w-screen h-screen flex justify-center items-center bg-slate-400">
+     <Loader />
+   </div> || "Loading...."
+    )
+    ;
+  }
   if (isError) {
     return error.message;
   }
@@ -158,18 +165,7 @@ export const RootLayout = () => {
 
       {/* ***********    outlet a partir de aqui******** */}
       <div className=" md:pl-2  md:col-start-2 md:col-end-[-1] md:row-start-4 md:row-end-5 lg:block  lg:row-start-2 lg:row-end-[-1] lg:col-start-2 lg:col-end-3 ">
-        <div className="pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row">
-          <h2 className="text-2xl font-bold xl:ml-[70px] ">Discover</h2>
-          <select className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5 xl:mr-[70px]">
-            {genres.map((item) => {
-              return (
-                <option key={item.value} value={item.value}>
-                  {item.title}
-                </option>
-              );
-            })}
-          </select>
-        </div>
+        
         <div className="scroll-container  flex flex-row lg:w-full h-screen overflow-y-auto  ">
           <Outlet />
         </div>

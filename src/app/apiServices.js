@@ -13,8 +13,11 @@ export const servicesApi = createApi({
     getTopCharts: builder.query({
       query: () => `/charts/world`,
     }),
+    getChartsByGerne: builder.query({
+      query: (genre) => `/charts/genre-world?genre_code=${genre}`,
+    }),
   }),
   
 });
 
-export const { useGetTopChartsQuery } = servicesApi;
+export const { useGetTopChartsQuery,useGetChartsByGerneQuery } = servicesApi;
