@@ -5,23 +5,23 @@ const Player = ({ activeSong, isPlaying, volume, seekTime, onEnded, onTimeUpdate
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
-    if (isPlaying) {
+   if (isPlaying) {
       ref.current.play();
     } else {
       ref.current.pause();
     }
   }
-
+  
  
 
   return (
     <audio
       src={activeSong?.hub?.actions[1]?.uri}
       ref={ref}
-      loop={repeat}
-      onEnded={onEnded}
-      onTimeUpdate={onTimeUpdate}
-      onLoadedData={onLoadedData}
+      // loop={repeat}
+      // onEnded={onEnded}
+      // onTimeUpdate={onTimeUpdate}
+      // onLoadedData={onLoadedData}
     />
   );
 };

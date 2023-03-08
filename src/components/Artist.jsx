@@ -8,7 +8,7 @@ export const Artist = ({ img }) => {
   return (
     <>
       <img
-        className="object-cover rounded-full w-full shadow-lg"
+        className="object-cover rounded-full w-full shadow-2xl"
         src={img}
         alt="img"
       />

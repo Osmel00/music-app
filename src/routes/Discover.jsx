@@ -11,6 +11,7 @@ export const Discover = () => {
   const fadeDown = {
     hidden:{opacity:0,y:100},
     visible:{opacity:1,y:0},
+    exit:{opacity:0,y:100},
   }
   
   const {
@@ -48,14 +49,16 @@ export const Discover = () => {
       variants={fadeDown}
       initial='hidden'
       animate='visible'
-      transition={{duration:1}}
-      className="discover__cards  flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-5">
+      exit='exit'
+      transition={{duration:0.5}}
+      className="discover__cards  flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
         {discoverData.map((chart) => (
           <Card
             key={chart.key}
             img={chart?.images?.coverart}
             titleSong={chart.title}
             author={chart.subtitle}
+            chart={chart}
           />
         ))}
       </motion.div>
