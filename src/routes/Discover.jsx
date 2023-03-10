@@ -5,8 +5,10 @@ import { useGetChartsByGerneQuery } from "../app/apiServices";
 import { motion,AnimatePresence } from "framer-motion"
 import { products } from "../assets/objConstants";
 import { Loader } from "../components/Loader";
-
+import {useSelector } from "react-redux";
+import { setActiveSong,playPause } from "../app/features/playerSlice";
 export const Discover = () => {
+ const{isPlaying , activeSong } = useSelector((state) =>state.player)
   const[genreDisc,setGenreDisc] = useState('POP');
   const fadeDown = {
     hidden:{opacity:0,y:100},
@@ -26,7 +28,7 @@ export const Discover = () => {
   if (isError) {
     return error.message;
   }
-
+  //console.log(discoverData);
   return (
     <div className="discover mx-auto xl:m-0">
       <div className="pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row">
@@ -52,13 +54,18 @@ export const Discover = () => {
       exit='exit'
       transition={{duration:0.5}}
       className="discover__cards  flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
-        {discoverData.map((chart) => (
+        {discoverData.map((song,index) => (
           <Card
-            key={chart.key}
-            img={chart?.images?.coverart}
-            titleSong={chart.title}
-            author={chart.subtitle}
-            chart={chart}
+            key={song.key}
+            img={song?.images?.coverart}
+            titleSong={song.title}
+            author={song.subtitle}
+            song={song}
+            data={discoverData}
+            id={song.key}
+            activeSong={activeSong}
+            isPlaying={isPlaying}
+            index={index}
           />
         ))}
       </motion.div>

@@ -26,7 +26,7 @@ export const RootLayout = () => {
   }
   const topChart5 = topChart.slice(0, 5);
 
-  console.log(topChart);
+  //console.log(topChart);
   const products = [
     {
       id: 1,
