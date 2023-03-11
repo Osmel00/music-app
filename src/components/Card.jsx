@@ -3,6 +3,7 @@ import { FaPlay } from "react-icons/fa";
 import { IoPauseSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../app/features/playerSlice";
+import { motion, AnimatePresence } from "framer-motion";
 
 export const Card = ({
   img,
@@ -15,8 +16,8 @@ export const Card = ({
   data,
   id: key,
 }) => {
- const dispatch = useDispatch();
- 
+  const dispatch = useDispatch();
+  const [showMessage, setShowMessage] = useState(false);
   const handlePlay = () => {
     dispatch(setActiveSong({ song, key, data, index }));
     dispatch(playPause(true));
@@ -24,10 +25,17 @@ export const Card = ({
   const handlePause = () => {
     dispatch(playPause(false));
   };
- 
 
   return (
-    <div className="  shadow-2xl py-4 px-4 lg:m-0 backdrop-blur-lg rounded-xl  relative  ">
+    <div
+      onMouseEnter={() => {
+        setShowMessage(true);
+      }}
+      onMouseLeave={() => {
+        setShowMessage(false);
+      }}
+      className="  shadow-2xl py-4 px-4 lg:m-0 backdrop-blur-lg rounded-xl  relative  "
+    >
       <div className="w-52 xl:w-64">
         <div className="mx-auto overflow-hidden rounded-lg bg-gray-200 ">
           <img
@@ -43,19 +51,25 @@ export const Card = ({
           {author}
         </p>
       </div>
-       <div className="overlayer opacity-0 absolute top-0 left-0 right-0 bottom-0 transition-all bg-black/40 hover:opacity-100 hover:cursor-pointer">
-        
-      
-     <div  className="z-10 absolute right-10 bottom-24 flex justify-center items-center p-4 w-[50px] h-[50px] rounded-full bg-[#4656c2]  text-xl cursor-pointer ease-in-out duration-200 hover:scale-125 hover:opacity-100 ">
-        
-          {isPlaying && activeSong.key === key? (
-            <IoPauseSharp size={280}  onClick={handlePause}  />
-          ) : (
-            <FaPlay size={280} onClick={handlePlay} />
-          )}
-         
-        </div>
-        </div> 
+      <div className="overlayer opacity-0 absolute top-0 left-0 right-0 bottom-0 transition-all bg-black/40 hover:opacity-100 hover:cursor-pointer"></div>
+      <AnimatePresence>
+        {(showMessage || (isPlaying && activeSong.key === key)) && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            whileHover={{ scale: 1.25 }}
+            exit={{ opacity: 0, y: 20, transition: { duration: 0.3 } }}
+            className=" z-10 absolute right-10 bottom-24 flex justify-center items-center p-4 w-[50px] h-[50px] rounded-full bg-[#5663b9]  text-xl cursor-pointer"
+          >
+            {isPlaying && activeSong.key === key ? (
+              <IoPauseSharp size={280} onClick={handlePause} />
+            ) : (
+              <FaPlay size={280} onClick={handlePlay} />
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -21,6 +21,9 @@ export const playerSlice = createSlice({
         state.currentSongs = action.payload.data;
       }
       state.currentIndex = action.payload.index;
+      state.isActive = true;
+      
+      //clear console.log
       console.log(action.payload);
       console.log(state.currentSongs);
       console.log(state.currentIndex);
