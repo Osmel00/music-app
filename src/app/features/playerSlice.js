@@ -1,41 +1,53 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    currentSongs: [],
-    currentIndex: 0,
-    isActive: false,
-    isPlaying: false,
-    activeSong: {},
-    genreListId: '',
-  };
+  currentSongs: [],
+  currentIndex: 0,
+  isActive: false,
+  isPlaying: false,
+  activeSong: {},
+  genreListId: "",
+};
 
 export const playerSlice = createSlice({
-  name: 'player',
+  name: "player",
   initialState,
   reducers: {
-    setActiveSong: (state,action) => {
+    setActiveSong: (state, action) => {
       state.activeSong = action.payload.song;
-      if(action.payload?.data){
-        state.currentSongs = [action.payload.data[action.payload?.index]] ;
-      }else{
+      if (action.payload?.data) {
+        //state.currentSongs = [action.payload.data[action.payload?.index]] ;
         state.currentSongs = action.payload.data;
       }
       state.currentIndex = action.payload.index;
       state.isActive = true;
-      
+
       //clear console.log
       console.log(action.payload);
       console.log(state.currentSongs);
+      console.log(state.activeSong);
       console.log(state.currentIndex);
     },
-    playPause: (state,action) => {
+
+    nextSong: (state, action) => {
+      state.activeSong = state.currentSongs[action.payload];
+      state.currentIndex = action.payload;
+      state.isActive = true;
+    },
+
+    prevSong: (state, action) => {
+      state.activeSong = state.currentSongs[action.payload];
+      state.currentIndex = action.payload;
+      state.isActive = true;
+    },
+    playPause: (state, action) => {
       state.isPlaying = action.payload;
     },
-    
   },
-})
+});
 
 // Action creators are generated for each case reducer function
-export const { setActiveSong, playPause, } = playerSlice.actions
+export const { setActiveSong, playPause, nextSong, prevSong } =
+  playerSlice.actions;
 
-export default playerSlice.reducer
+export default playerSlice.reducer;

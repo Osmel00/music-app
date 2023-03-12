@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useState, useEffect } from "react";
-
+import {useSelector,useDispatch } from "react-redux";
+import {playPause } from "../app/features/playerSlice";
 const Player = ({
   activeSong,
   isPlaying,
@@ -12,22 +13,25 @@ const Player = ({
   repeat,
 }) => {
   const ref = useRef(null);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (ref.current) {
       if (isPlaying) {
+       if(ref.current.ended){
+        console.log('termino la cancion')
+        ref.current.currentTime = 0;
+        dispatch(playPause(false)); 
+        return;
+      } 
         ref.current.play();
       } else {
         ref.current.pause();
       }
     }
   });
-  //ref.current.currentTime=0;
   useEffect(() => {
-    //ref.current.currentTime='seconds';
-    console.log(ref.current.currentTime);
-    console.log(ref.current.duration);
-  });
+    ref.current.volume = volume;
+  }, [volume]);
 
   useEffect(() => {
     ref.current.currentTime = seekTime;
@@ -37,7 +41,7 @@ const Player = ({
     <audio
       src={activeSong?.hub?.actions[1]?.uri}
       ref={ref}
-      // loop={repeat}
+       loop={repeat}
       // onEnded={onEnded}
       onTimeUpdate={onTimeUpdate}
       onLoadedData={onLoadedData}
