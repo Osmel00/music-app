@@ -58,3 +58,9 @@ export const genres = [
     },
     // More products...
   ]
+
+ export const fadeDown = {
+    hidden:{opacity:0,y:100},
+    visible:{opacity:1,y:0},
+    exit:{opacity:0,y:100},
+  }

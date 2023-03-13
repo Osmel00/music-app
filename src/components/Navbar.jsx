@@ -59,7 +59,7 @@ export const Navbar = () => {
       >
         <div className="flex items-center py-4 gap-x-2 text-blue-400  hover:bg-[#4c426e]/30 rounded-lg ">
           <AiOutlineHome className="w-6 h-6" />
-          <Link to={"#"}>Discover</Link>
+          <Link to={"/"}>Discover</Link>
         </div>
         <div
           className={` flex items-center py-4 gap-x-2  hover:bg-[#4c426e]/30  rounded-lg  ${
@@ -67,7 +67,7 @@ export const Navbar = () => {
           } `}
         >
           <FiMapPin className="w-6 h-6" />
-          <Link to={"#"}> Around You</Link>
+          <Link to={"/around"}> Around You</Link>
         </div>
         <div
           className={` flex items-center py-4 gap-x-2  hover:bg-[#4c426e]/30  rounded-lg  ${
@@ -75,7 +75,7 @@ export const Navbar = () => {
           }`}
         >
           <IoIosPeople className="w-6 h-6" />
-          <Link to={"#"}> Top Artists</Link>
+          <Link to={"/artists"}> Top Artists</Link>
         </div>
         <div
           className={` flex items-center py-4 gap-x-2   hover:bg-[#4c426e]/30  rounded-lg ${
@@ -83,7 +83,7 @@ export const Navbar = () => {
           }`}
         >
           <SiSharp className="w-6 h-6" />
-          <Link to={"#"}> Top Charts</Link>
+          <Link to={"/chart"}> Top Charts</Link>
         </div>
       </div>
     </div>

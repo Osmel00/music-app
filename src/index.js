@@ -8,6 +8,7 @@ import { AroundYou } from "./routes/AroundYou";
 import {TopArtist} from "./routes/TopArtist"
 import {store} from './app/store'
 import { Provider } from 'react-redux'
+import { TopCharts } from "./routes/TopCharts";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
         path: "/artists",
         element: <TopArtist/>,
       },
+      {
+        path: "/chart",
+        element: <TopCharts/>,
+      }
     ]
   },
 ]);

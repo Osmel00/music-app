@@ -34,7 +34,7 @@ export const Card = ({
       onMouseLeave={() => {
         setShowMessage(false);
       }}
-      className="  shadow-2xl py-4 px-4 lg:m-0 backdrop-blur-lg rounded-xl  relative  "
+      className="  shadow-2xl py-4 px-4 lg:m-0 backdrop-blur-lg rounded-xl  relative h-72 xl:h-80"
     >
       <div className="w-52 xl:w-64">
         <div className="mx-auto overflow-hidden rounded-lg bg-gray-200 ">

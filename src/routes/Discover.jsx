@@ -1,14 +1,14 @@
 import {React,useState,useEffect} from "react";
 import { Card } from "../components/Card";
-import { genres } from "../assets/objConstants";
+import { genres,fadeDown, } from "../assets/objConstants";
 import { useGetChartsByGerneQuery } from "../app/apiServices";
 import { motion,AnimatePresence } from "framer-motion"
 import { products } from "../assets/objConstants";
 import { Loader } from "../components/Loader";
 import {useSelector } from "react-redux";
-import { setActiveSong,playPause } from "../app/features/playerSlice";
+
 export const Discover = () => {
- const{isPlaying , activeSong } = useSelector((state) =>state.player)
+ const{isPlaying , activeSong,search } = useSelector((state) =>state.player)
   const[genreDisc,setGenreDisc] = useState('POP');
   const fadeDown = {
     hidden:{opacity:0,y:100},
@@ -28,12 +28,23 @@ export const Discover = () => {
   if (isError) {
     return error.message;
   }
-  //console.log(discoverData);
+
+  const findGenre = (genre) =>{
+    let found;
+    genres.forEach(item =>{
+      if(item.value===genre){
+        found = item.title;
+        return;
+      }
+    })
+    return found;
+  }
+  console.log(search);
   return (
     <div className="discover mx-auto xl:m-0">
-      <div className="pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row">
-        <h2 className="text-2xl font-bold xl:ml-[70px] ">Discover</h2>
-        <select onChange={(e)=>setGenreDisc(e.target.value) } className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5 xl:mr-[70px]">
+      <div className="md:min-w-[calc(95vw_-_14rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row ">
+        <h2 className="text-2xl font-bold xl:ml-[70px] ">{`Discover ${findGenre(genreDisc)}`} </h2>
+        <select onChange={(e)=>setGenreDisc(e.target.value) } className=" bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5 xl:mr-[70px]">
           {genres.map((item) => {
             return (
               <option key={item.value} value={item.value}>
@@ -53,8 +64,10 @@ export const Discover = () => {
       animate='visible'
       exit='exit'
       transition={{duration:0.5}}
-      className="discover__cards  flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
-        {discoverData.map((song,index) => (
+      className="discover__cards lg:h-screen lg:overflow-y-auto flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
+        {discoverData.filter(discover=>{
+          return discover.title.toLowerCase().includes(search)
+        }).map((song,index) => (
           <Card
             key={song.key}
             img={song?.images?.coverart}

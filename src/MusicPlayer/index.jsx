@@ -54,13 +54,13 @@ const MusicPlayer = () => {
   };
   
     return (
-      <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
+      <div className="relative sm:px-2 lg:px-8 w-full flex items-center justify-between">
         <Track 
          isPlaying={isPlaying}
          activeSong={activeSong}
          isActive={isActive}
         />
-        <div className="flex-1 flex flex-col items-center justify-center">
+        <div className="flex-1 flex flex-col items-center justify-center ">
           <Controls
            isPlaying={isPlaying}
            handlePlayPause={handlePlayPause}
