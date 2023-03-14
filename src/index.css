@@ -18,6 +18,9 @@ body {
    * {
     scrollbar-width: none;
     scrollbar-color: #000000 black;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   } 
 
   /* Chrome, Edge, and Safari */

@@ -41,7 +41,7 @@ export const Discover = () => {
   }
   console.log(search);
   return (
-    <div className="discover mx-auto xl:m-0">
+    <div className="discover mx-auto xl:m-0 mb-52">
       <div className="md:min-w-[calc(95vw_-_14rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row ">
         <h2 className="text-2xl font-bold xl:ml-[70px] ">{`Discover ${findGenre(genreDisc)}`} </h2>
         <select onChange={(e)=>setGenreDisc(e.target.value) } className=" bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5 xl:mr-[70px]">
@@ -64,7 +64,7 @@ export const Discover = () => {
       animate='visible'
       exit='exit'
       transition={{duration:0.5}}
-      className="discover__cards lg:h-screen lg:overflow-y-auto flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
+      className="discover__cards   flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4 lg:h-[calc(100vh_-_18rem)] lg:overflow-y-auto  lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
         {discoverData.filter(discover=>{
           return discover.title.toLowerCase().includes(search)
         }).map((song,index) => (
