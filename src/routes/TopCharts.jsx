@@ -36,7 +36,7 @@ export const TopCharts = () => {
       animate='visible'
       exit='exit'
       transition={{duration:0.5}}
-      className="around__cards lg:h-screen lg:overflow-y-auto flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
+      className="around__cards   flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4 lg:h-[calc(100vh_-_18rem)] lg:overflow-y-auto  lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
        {topChart.filter(chart=>{
           return chart.title.toLowerCase().includes(search)
         }).map((song,index) => (

@@ -4,6 +4,7 @@ import { IoPauseSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../app/features/playerSlice";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export const Card = ({
   img,
@@ -17,7 +18,8 @@ export const Card = ({
   id: key,
 }) => {
   const dispatch = useDispatch();
-  const [showMessage, setShowMessage] = useState(false);
+  const [showPlayIcon, setShowPlayIcon] = useState(false);
+ 
   const handlePlay = () => {
     dispatch(setActiveSong({ song, key, data, index }));
     dispatch(playPause(true));
@@ -25,14 +27,14 @@ export const Card = ({
   const handlePause = () => {
     dispatch(playPause(false));
   };
-
+ //console.log(idArtists);
   return (
     <div
       onMouseEnter={() => {
-        setShowMessage(true);
+        setShowPlayIcon(true);
       }}
       onMouseLeave={() => {
-        setShowMessage(false);
+        setShowPlayIcon(false);
       }}
       className="  shadow-2xl py-4 px-4 lg:m-0 backdrop-blur-lg rounded-xl  relative h-72 xl:h-80"
     >
@@ -44,16 +46,17 @@ export const Card = ({
             className="w-52 h-52 xl:w-64 xl:h-64 object-cover shadow-2xl"
           />
         </div>
-        <h3 className="mt-4 text-lg text-white/90 font-bold max-w-[192px] xl:max-w-[280px] truncate">
-          {titleSong}
-        </h3>
-        <p className="mt-1 text-sm font-medium text-gray-300 md:w-52 truncate">
+        {titleSong && <Link to={`/songsdetails/${key}`}>  <h3 className="mt-4 text-lg text-white/90 font-bold max-w-[192px] xl:max-w-[280px] truncate hover:text-blue-400">
+         {titleSong}
+        </h3></Link>}
+
+         { <Link to={song.artists ? `/artistsdetails/${song?.artists[0]?.adamid}` : null}> <p className= {titleSong? 'mt-1 text-sm font-medium text-gray-300 md:w-52 truncate hover:text-blue-400':'mt-4 text-lg text-white/90 font-bold max-w-[192px] xl:max-w-[280px] truncate hover:text-blue-400'}>
           {author}
-        </p>
+        </p></Link> } 
       </div>
-      <div className="overlayer opacity-0 absolute top-0 left-0 right-0 bottom-0 transition-all bg-black/40 hover:opacity-100 hover:cursor-pointer"></div>
+       <div className="overlayer  opacity-0 absolute top-0 left-0 right-0 bottom-14 lg:bottom-14 xl:bottom-8 transition-all bg-black/40 hover:opacity-100 hover:cursor-pointer"></div> 
       <AnimatePresence>
-        {(showMessage || (isPlaying && activeSong.key === key)) && (
+        {(showPlayIcon || (isPlaying && activeSong.key === key)) && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

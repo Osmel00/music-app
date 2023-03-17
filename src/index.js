@@ -9,6 +9,8 @@ import {TopArtist} from "./routes/TopArtist"
 import {store} from './app/store'
 import { Provider } from 'react-redux'
 import { TopCharts } from "./routes/TopCharts";
+import { ChartsDetails } from "./routes/ChartsDetails";
+import { ArtistsDetails } from "./routes/ArtistsDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,7 +34,16 @@ const router = createBrowserRouter([
       {
         path: "/chart",
         element: <TopCharts/>,
-      }
+        
+      },
+      {
+        path:"/songsdetails/:idsong",
+        element:<ChartsDetails/>
+      },
+      {
+        path:"/artistsdetails/:idartists",
+        element:<ArtistsDetails/>
+      },
     ]
   },
 ]);

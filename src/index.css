@@ -31,9 +31,9 @@ body {
 
   
 
-   *::-webkit-scrollbar-thumb {
+   /* *::-webkit-scrollbar-thumb {
     background-color: #130783;
     border-radius: 21px;
-    border: 3px solid #130783;
-  } 
+    border: 0px solid #130783;
+  }  */
 
