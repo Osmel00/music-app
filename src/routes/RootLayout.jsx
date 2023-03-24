@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 
 export const RootLayout = () => {
   const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
-  const { activeSong } = useSelector((state) => state.player);
+  const { activeSong,isPlaying } = useSelector((state) => state.player);
   if (isLoading) {
     return (
       (
@@ -95,7 +95,7 @@ export const RootLayout = () => {
         <Header />
       </div>
 
-      <div className=" overflow-y-auto lg:overflow-y-visible lg:over h-screen lg:h-auto  lg:flex lg:flex-row-reverse ">
+      <div className=" overflow-y-auto lg:overflow-y-visible  h-[calc(100vh_-_10rem)] lg:h-auto  lg:flex lg:flex-row-reverse ">
         <div className="">
           <div className=" top-chart pt-28 md:p lg:pt-0 md:w-[calc(95vw_-_14rem)] md:px-2 md:col-start-2 md:col-end-[-1] md:row-start-2 md:row-end-3 lg:col-start-3 lg:w-[calc(95vw_-_14rem_-_320px)] lg:max-w-[500px] ">
             <div className="flex justify-between items-center text-white pb-4 ">
@@ -109,10 +109,16 @@ export const RootLayout = () => {
                   <Link to={"/chart"}>
                     {" "}
                     <Charts
-                      index={index + 1 + "."}
+                     code={index + 1 + "."}
+                      index={index}
                       titleSong={item.title}
                       author={item.subtitle}
                       img={item.images?.coverart}
+                      song={item}
+                      id={item.key}
+                      activeSong={activeSong}
+                      isPlaying={isPlaying}
+                      data={topChart5}
                     />
                   </Link>
                 </div>

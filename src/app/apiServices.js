@@ -25,12 +25,15 @@ export const servicesApi = createApi({
     getArtistsById: builder.query({
       query: (artistId) => `v2/artists/details?artist_id=${artistId}`,
     }),
+    getChartsRelatedById: builder.query({
+      query: (songId) => `v1/tracks/related?track_id=${songId}`,
+    }),
     
   }),
   
 });
 
-export const { useGetTopChartsQuery,useGetChartsByGerneQuery,useGetChartsByCountryQuery,useGetChartsByIdQuery,useGetArtistsByIdQuery } = servicesApi;
+export const { useGetTopChartsQuery,useGetChartsByGerneQuery,useGetChartsByCountryQuery,useGetChartsByIdQuery,useGetArtistsByIdQuery,useGetChartsRelatedByIdQuery } = servicesApi;
 
 // getSongsBySearch: builder.query({ query: (searchTerm) => `v1/search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}` }),
 //     getArtistDetails: builder.query({ query: (artistId) => `v2/artists/details?artist_id=${artistId}` }),
