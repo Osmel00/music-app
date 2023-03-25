@@ -26,8 +26,8 @@ export const Charts = ({ img, titleSong, author,code, index ,activeSong,data,son
           />
 
           <div className="flex flex-col flex-wrap ">
-            <Link to={`/songsdetails/${key}`}> <h3 className="text-base font-bold capitalize hover:text-blue-400 max-w-[192px] xl:max-w-[280px] truncate">{titleSong}</h3></Link>
-           {/* <Link to={`/artistsdetails/${song?.artists[0]?.adamid}`}> <p className="text-white/60 text-xs capitalize  hover:text-blue-400">{author}</p></Link> */}
+            <Link to={ `/songsdetails/${key}`}> <h3 className="text-base font-bold capitalize hover:text-blue-400 max-w-[192px] xl:max-w-[280px] truncate">{titleSong}</h3></Link>
+           <Link to={song.artists ?`/artistsdetails/${song?.artists[0]?.adamid}`:null}> <p className="text-white/60 text-xs capitalize  hover:text-blue-400">{author}</p></Link>
           </div>
         </div>
 

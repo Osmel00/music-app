@@ -25,9 +25,9 @@ export const ChartsDetails = () => {
   if (isError) {
     return error.message;
   }
-  console.log(idsong);
-  console.log(songRelatedData);
-  // console.log(songData);
+  // console.log(idsong);
+  // console.log(songRelatedData);
+  //  console.log(songData);
   // console.log(idartists);
   return (
     <div className=" pt-8 px-4 md:min-w-[calc(95vw_-_14rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)] lg:h-[calc(100vh_-_11rem)] lg:overflow-y-auto">
@@ -49,13 +49,16 @@ export const ChartsDetails = () => {
               {songData?.sections[1].type === "LYRICS" ? (
                 songData.sections[1].text.map((textOnLine, index) => {
                   return (
-                    <div>
+                   
+                   <div>
                       {" "}
                       <p
+                        
                         key={`${textOnLine.key}-${index}`}
                         className="text-sm font-bold text-gray-600"
                       >
                         {textOnLine}
+                        
                       </p>
                     </div>
                   );
@@ -75,8 +78,11 @@ export const ChartsDetails = () => {
               //aqui va el componente Charts con sus parametros
               {songRelatedData?.map((item, index) => {
                 return (
+                 
                   <div key={item.key}>
+                  
                     <Charts
+                      
                       code={index + 1 + "."}
                       index={index}
                       titleSong={item.title}
@@ -89,6 +95,7 @@ export const ChartsDetails = () => {
                       data={songRelatedData}
                     />
                   </div>
+                 
                 );
               })}
             </div>
