@@ -42,8 +42,8 @@ export const Discover = () => {
   console.log(search);
   return (
     <div className="discover mx-auto xl:m-0 mb-52">
-      <div className="md:min-w-[calc(95vw_-_14rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row ">
-        <h2 className="text-2xl font-bold xl:ml-[70px] ">{`Discover ${findGenre(genreDisc)}`} </h2>
+      <div className="md:min-w-[calc(95vw_-_16rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row ">
+        <h2 className="text-2xl font-bold xl:ml-[70px]  ">{`Discover ${findGenre(genreDisc)}`} </h2>
         <select onChange={(e)=>setGenreDisc(e.target.value) } className=" bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5 xl:mr-[70px]">
           {genres.map((item) => {
             return (

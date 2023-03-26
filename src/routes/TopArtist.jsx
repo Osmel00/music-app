@@ -23,7 +23,7 @@ export const TopArtist = () => {
   console.log(topArtist);
   return (
     <div className="artists mx-auto xl:m-0">
-    <div className="md:min-w-[calc(95vw_-_14rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row ">
+    <div className="md:min-w-[calc(95vw_-_16rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row">
       <h2 className="text-2xl font-bold xl:ml-[70px] ">Top Artists </h2>
       </div>
        {/* abajo hago el map y le paso las pro a la card */}

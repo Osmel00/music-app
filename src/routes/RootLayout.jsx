@@ -85,13 +85,13 @@ export const RootLayout = () => {
   ];
 
   return (
-    <div className="main-container  relative  bg-gradient-to-r from-black to-[#030d4f]  min-h-screen   min-w-[375px] px-5 md:pl-0 md:grid  md:grid-cols-[max-content_1fr] md:grid-rows-[max-content_max-content_1fr_max-content] lg:grid-cols-[1fr_1fr_max-content] lg:grid-rows-[max-content_max-content_1fr] lg:overflow-hidden lg:h-screen">
+    <div className="main-container  relative  bg-gradient-to-r from-black to-[#030d4f]  min-h-screen   min-w-[375px] px-5 md:pl-0 md:pr-2 md:grid  md:grid-cols-[max-content_1fr] md:grid-rows-[max-content_max-content_1fr_max-content] lg:grid-cols-[1fr_1fr_max-content] lg:grid-rows-[max-content_max-content_1fr] lg:overflow-hidden lg:h-screen">
       <div className="sidebar hidden px-1 md:block md:row-start-1 md:row-end-[-1] h-auto  bg-[#13141a]/70">
         <Logo />
         <Navbar />
       </div>
 
-      <div className="header   md:left-0 absolute z-50 bg-gradient-to-r from-black to-[#030d4f] right-[20px] left-[20px] min-w-[320px]  lg:bg-transparent lg:static md:w-[calc(95vw_-_14rem)] md:px-1 md:h-14 md:col-start-2 md:col-end-[-1] md:row-start-1 md:row-end-2 ">
+      <div className="header   md:left-0 absolute z-50 bg-gradient-to-r from-black to-[#030d4f] right-[20px] left-[20px] min-w-[320px]  lg:bg-transparent lg:static md:w-[calc(95vw_-_14rem)] md:px-1 md:h-14 md:col-start-2 md:col-end-[-1] md:row-start-1 md:row-end-2">
         <Header />
       </div>
 
