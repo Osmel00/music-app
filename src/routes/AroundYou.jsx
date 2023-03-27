@@ -4,8 +4,9 @@ import { useGetChartsByCountryQuery } from "../app/apiServices";
 import { motion,AnimatePresence } from "framer-motion"
 import { Card } from "../components/Card";
 import {useSelector } from "react-redux";
+import { Loader } from '../components/Loader';
 export const AroundYou = () => {
-  const{isPlaying , activeSong,search} = useSelector((state) =>state.player)
+  const{isPlaying , activeSong,} = useSelector((state) =>state.player)
  
   const {
     data: countryData,
@@ -13,8 +14,13 @@ export const AroundYou = () => {
     isError,
     error,
   } = useGetChartsByCountryQuery('DE');
-  if (isLoading)  {
-    return "Loading...."
+  if (isLoading) {
+    return(
+      <div className="w-screen">
+        <Loader title={"Loading around you"} />;
+      </div>
+    ) 
+    
   }
   if (isError) {
     return error.message;
@@ -37,9 +43,7 @@ export const AroundYou = () => {
       exit='exit'
       transition={{duration:0.5}}
       className="around__cards  flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4 lg:h-[calc(100vh_-_18rem)] lg:overflow-y-auto   lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
-       {countryData.filter(country=>{
-          return country.title.toLowerCase().includes(search)
-        }).map((song,index) => (
+       {countryData.map((song,index) => (
           <Card
             key={song.key}
             img={song?.images?.coverart}

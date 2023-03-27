@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi";
 import { IoIosPeople } from "react-icons/io";
 import { SiSharp } from "react-icons/si";
 
-export const Navbar = () => {
+export const Navbar = ({setMenu}) => {
+  const [windowWidth,setWindowWidth] = useState(window.innerWidth);
+  useEffect(()=>{
+    window.addEventListener("resize",() =>{
+      setWindowWidth(window.innerWidth);
+    })
+  },[])
   const [click, setClick] = useState({
     Around_You: false,
     "Top Artists": false,
@@ -13,6 +19,13 @@ export const Navbar = () => {
   });
 
   const activeClassName = (e) => {
+    if(windowWidth< 768){
+      const menu = e.target.innerText;
+      if(menu==='Discover' || menu==='Around You' || menu==='Top Artists' || menu==='Top Charts')
+      {setMenu((menu) => !menu)}
+    }
+    
+    
     switch (e.target.innerText) {
       case "Discover":
         setClick({

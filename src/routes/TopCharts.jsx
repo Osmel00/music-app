@@ -4,9 +4,10 @@ import { useGetTopChartsQuery } from "../app/apiServices";
 import { motion,AnimatePresence } from "framer-motion"
 import { Card } from "../components/Card";
 import {useSelector } from "react-redux";
+import { Loader } from '../components/Loader';
 
 export const TopCharts = () => {
-  const{isPlaying , activeSong,search} = useSelector((state) =>state.player)
+  const{isPlaying , activeSong,} = useSelector((state) =>state.player)
  
   const {
     data: topChart,
@@ -14,8 +15,13 @@ export const TopCharts = () => {
     isError,
     error,
   } = useGetTopChartsQuery();
-  if (isLoading)  {
-    return "Loading...."
+  if (isLoading) {
+    return(
+      <div className="w-screen">
+        <Loader title={"Loading top charts"} />;
+      </div>
+    ) 
+    
   }
   if (isError) {
     return error.message;
@@ -23,7 +29,7 @@ export const TopCharts = () => {
   console.log(topChart);
  
   return (
-    <div className="around mx-auto xl:m-0">
+    <div className=" mx-auto xl:m-0">
       <div className="md:min-w-[calc(95vw_-_16rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row">
         <h2 className="text-2xl font-bold xl:ml-[70px] ">Top Charts </h2>
         </div>
@@ -37,9 +43,7 @@ export const TopCharts = () => {
       exit='exit'
       transition={{duration:0.5}}
       className="around__cards   flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4 lg:h-[calc(100vh_-_18rem)] lg:overflow-y-auto  lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
-       {topChart.filter(chart=>{
-          return chart.title.toLowerCase().includes(search)
-        }).map((song,index) => (
+       {topChart.map((song,index) => (
           <Card
             key={song.key}
             img={song?.images?.coverart}

@@ -7,7 +7,7 @@ const initialState = {
   isPlaying: false,
   activeSong: {},
   genreListId: "",
-  search:"",
+  
 };
 
 export const playerSlice = createSlice({
@@ -44,14 +44,12 @@ export const playerSlice = createSlice({
     playPause: (state, action) => {
       state.isPlaying = action.payload;
     },
-    setSearch:(state, action) => {
-       state.search = action.payload;
-    },
+    
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setActiveSong, playPause, nextSong, prevSong,setSearch } =
+export const { setActiveSong, playPause, nextSong, prevSong,} =
   playerSlice.actions;
 
 export default playerSlice.reducer;

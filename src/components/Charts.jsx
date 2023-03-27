@@ -15,7 +15,7 @@ export const Charts = ({ img, titleSong, author,code, index ,activeSong,data,son
     dispatch(playPause(false));
   };
   return (
-    <div className="top-charts-container py-2 text-white  mb-2  hover:bg-[#4c426e]/50 rounded-lg cursor-pointer  ">
+    <div className="top-charts-container py-2 text-white  mb-2  hover:bg-[#4c426e]/50 rounded-lg cursor-pointer   ">
       <div className="wrapper flex justify-between items-center px-4">
         <div className="flex items-center gap-2 w-[240px] md:w-72 ">
           <p>{code}</p>

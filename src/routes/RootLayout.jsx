@@ -1,7 +1,7 @@
 import { Header } from "../components/Header";
 import MusicPlayer from "../MusicPlayer/index";
 import { Charts } from "../components/Charts";
-import{Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { useGetTopChartsQuery } from "../app/apiServices";
 import { Artist } from "../components/Artist";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,12 +14,12 @@ import { useSelector } from "react-redux";
 
 export const RootLayout = () => {
   const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
-  const { activeSong,isPlaying } = useSelector((state) => state.player);
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
   if (isLoading) {
     return (
       (
-        <div className="w-screen h-screen flex justify-center items-center bg-slate-400">
-          <Loader />
+        <div className="w-screen bg-gradient-to-r from-black to-[#030d4f] ">
+          {" "}
         </div>
       ) || "Loading...."
     );
@@ -109,7 +109,7 @@ export const RootLayout = () => {
                   <Link to={"/chart"}>
                     {" "}
                     <Charts
-                     code={index + 1 + "."}
+                      code={index + 1 + "."}
                       index={index}
                       titleSong={item.title}
                       author={item.subtitle}

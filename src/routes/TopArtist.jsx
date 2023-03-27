@@ -4,9 +4,10 @@ import { useGetTopChartsQuery } from "../app/apiServices";
 import { motion,AnimatePresence } from "framer-motion"
 import { Card } from "../components/Card";
 import {useSelector } from "react-redux";
+import { Loader } from '../components/Loader';
 
 export const TopArtist = () => {
-  const{isPlaying , activeSong,search} = useSelector((state) =>state.player)
+  const{isPlaying , activeSong,} = useSelector((state) =>state.player)
  
   const {
     data: topArtist,
@@ -14,8 +15,13 @@ export const TopArtist = () => {
     isError,
     error,
   } = useGetTopChartsQuery();
-  if (isLoading)  {
-    return "Loading...."
+  if (isLoading) {
+    return(
+      <div className="w-screen">
+        <Loader title={"Loading top artists"} />;
+      </div>
+    ) 
+    
   }
   if (isError) {
     return error.message;
@@ -36,9 +42,7 @@ export const TopArtist = () => {
     exit='exit'
     transition={{duration:0.5}}
     className="artists__cards   flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4 lg:h-[calc(100vh_-_18rem)] lg:overflow-y-auto  lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
-     {topArtist.filter(art=>{
-        return art.title.toLowerCase().includes(search)
-      }).map((song,index) => (
+     {topArtist.map((song,index) => (
         <Card
           key={song.key}
           img={song?.images?.coverart}

@@ -8,7 +8,7 @@ import { Loader } from "../components/Loader";
 import {useSelector } from "react-redux";
 
 export const Discover = () => {
- const{isPlaying , activeSong,search } = useSelector((state) =>state.player)
+ const{isPlaying , activeSong, } = useSelector((state) =>state.player)
   const[genreDisc,setGenreDisc] = useState('POP');
   const fadeDown = {
     hidden:{opacity:0,y:100},
@@ -22,8 +22,13 @@ export const Discover = () => {
     isError,
     error,
   } = useGetChartsByGerneQuery(genreDisc);
-  if (isLoading)  {
-    return "Loading...."
+  if (isLoading) {
+    return(
+      <div className="w-screen">
+        <Loader title={"Loading discover"} />;
+      </div>
+    ) 
+    
   }
   if (isError) {
     return error.message;
@@ -39,7 +44,7 @@ export const Discover = () => {
     })
     return found;
   }
-  console.log(search);
+ 
   return (
     <div className="discover mx-auto xl:m-0 mb-52">
       <div className="md:min-w-[calc(95vw_-_16rem)] lg:min-w-[calc(95vw_-_14rem_-_500px)]  pb-12  flex flex-col gap-5 justify-between items-center text-white md:flex-row ">
@@ -65,9 +70,7 @@ export const Discover = () => {
       exit='exit'
       transition={{duration:0.5}}
       className="discover__cards   flex flex-col gap-8 md:flex-row md:flex-wrap md:gap-4 lg:h-[calc(100vh_-_18rem)] lg:overflow-y-auto  lg:flex-row lg:flex-wrap xl:px-4 xl:gap-x-5 xl:gap-y-8">
-        {discoverData.filter(discover=>{
-          return discover.title.toLowerCase().includes(search)
-        }).map((song,index) => (
+        {discoverData.map((song,index) => (
           <Card
             key={song.key}
             img={song?.images?.coverart}

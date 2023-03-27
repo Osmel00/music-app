@@ -8,10 +8,11 @@ import {
   useGetChartsRelatedByIdQuery,
 } from "../app/apiServices";
 import { useSelector } from "react-redux";
-import {Charts} from "../components/Charts";
+import { Charts } from "../components/Charts";
+import { Loader } from "../components/Loader";
 export const ChartsDetails = () => {
   const { idsong, idartists } = useParams();
-  const { activeSong,isPlaying } = useSelector((state) => state.player);
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
   const {
     data: songData,
     isLoading,
@@ -20,13 +21,21 @@ export const ChartsDetails = () => {
   } = useGetChartsByIdQuery(idsong);
   const { data: songRelatedData } = useGetChartsRelatedByIdQuery(idsong);
   if (isLoading) {
-    return "Loading....";
+    if (isLoading) {
+      return (
+        (
+          <div className="w-screen">
+            <Loader title={"Loading songs"} />
+          </div>
+        ) || "Loading...."
+      );
+    }
   }
   if (isError) {
     return error.message;
   }
   // console.log(idsong);
-  // console.log(songRelatedData);
+  console.log(songRelatedData);
   //  console.log(songData);
   // console.log(idartists);
   return (
@@ -49,16 +58,13 @@ export const ChartsDetails = () => {
               {songData?.sections[1].type === "LYRICS" ? (
                 songData.sections[1].text.map((textOnLine, index) => {
                   return (
-                   
-                   <div>
+                    <div>
                       {" "}
                       <p
-                        
                         key={`${textOnLine.key}-${index}`}
                         className="text-sm font-bold text-gray-600"
                       >
                         {textOnLine}
-                        
                       </p>
                     </div>
                   );
@@ -77,26 +83,23 @@ export const ChartsDetails = () => {
             <div>
               //aqui va el componente Charts con sus parametros
               {songRelatedData?.map((item, index) => {
-                return (
-                 
-                  <div key={item.key}>
-                  
-                    <Charts
-                      
-                      code={index + 1 + "."}
-                      index={index}
-                      titleSong={item.title}
-                      author={item.subtitle}
-                      img={item.images?.coverart}
-                      song={item}
-                      id={item.key}
-                      activeSong={activeSong}
-                      isPlaying={isPlaying}
-                      data={songRelatedData}
-                    />
-                  </div>
-                 
-                );
+              return (
+                 <div key={item.key} className="xl:w-3/4" >
+                  <Charts
+                   
+                    code={index + 1 + "."}
+                    index={index}
+                    titleSong={item.title}
+                    author={item.subtitle}
+                    img={item.images?.coverart}
+                    song={item}
+                    id={item.key}
+                    activeSong={activeSong}
+                    isPlaying={isPlaying}
+                    data={songRelatedData}
+                  />
+               </div>
+               );
               })}
             </div>
           </div>
