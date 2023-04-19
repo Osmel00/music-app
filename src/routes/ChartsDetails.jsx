@@ -81,7 +81,7 @@ export const ChartsDetails = () => {
               Related Songs
             </h2>
             <div>
-              //aqui va el componente Charts con sus parametros
+              
               {songRelatedData?.map((item, index) => {
               return (
                  <div key={item.key} className="xl:w-3/4" >

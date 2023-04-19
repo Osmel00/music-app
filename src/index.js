@@ -5,13 +5,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RootLayout } from "./routes/RootLayout";
 import { Discover } from "./routes/Discover";
 import { AroundYou } from "./routes/AroundYou";
-import {TopArtist} from "./routes/TopArtist"
-import {store} from './app/store'
-import { Provider } from 'react-redux'
+import { TopArtist } from "./routes/TopArtist";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 import { TopCharts } from "./routes/TopCharts";
 import { ChartsDetails } from "./routes/ChartsDetails";
 import { ArtistsDetails } from "./routes/ArtistsDetails";
 import { Search } from "./routes/Search";
+import { Login } from "./components/login-register/Login";
+import { Signup } from "./components/login-register/Signup";
+import { SnackbarProvider, } from "notistack";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,43 +23,50 @@ const router = createBrowserRouter([
       {
         index: true,
         path: "/",
-        element: <Discover/>,
+        element: <Discover />,
       },
       {
-       
         path: "/around",
-        element: <AroundYou/>,
+        element: <AroundYou />,
       },
       {
-       
         path: "/artists",
-        element: <TopArtist/>,
+        element: <TopArtist />,
       },
       {
         path: "/chart",
-        element: <TopCharts/>,
-        
+        element: <TopCharts />,
       },
       {
-        path:"/songsdetails/:idsong",
-        element:<ChartsDetails/>
+        path: "/songsdetails/:idsong",
+        element: <ChartsDetails />,
       },
       {
-        path:"/artistsdetails/:idartists",
-        element:<ArtistsDetails/>
+        path: "/artistsdetails/:idartists",
+        element: <ArtistsDetails />,
       },
       {
-        path:"/search/:searchparams",
-        element:<Search/>
+        path: "/search/:searchparams",
+        element: <Search />,
       },
-    ]
+    ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <RouterProvider router={router} />
+      <SnackbarProvider maxSnack={3} autoHideDuration={5000}>
+        <RouterProvider router={router} />
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>
 );

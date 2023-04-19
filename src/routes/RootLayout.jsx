@@ -29,60 +29,8 @@ export const RootLayout = () => {
   }
   const topChart5 = topChart.slice(0, 5);
 
-  //console.log(topChart);
-  const products = [
-    {
-      id: 1,
-      name: "Earthen Bottle",
-      href: "#",
-      price: "$48",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-      imageAlt:
-        "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-    },
-    {
-      id: 2,
-      name: "Nomad Tumbler",
-      href: "#",
-      price: "$35",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-      imageAlt:
-        "Olive drab green insulated bottle with flared screw lid and flat top.",
-    },
-    {
-      id: 3,
-      name: "Focus Paper Refill",
-      href: "#",
-      price: "$89",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-      imageAlt:
-        "Person using a pen to cross a task off a productivity paper card.",
-    },
-    {
-      id: 4,
-      name: "Machined Mechanical Pencil",
-      href: "#",
-      price: "$35",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-      imageAlt:
-        "Hand holding black machined steel mechanical pencil with brass tip and top.",
-    },
-    {
-      id: 1,
-      name: "Earthen Bottle",
-      href: "#",
-      price: "$48",
-      imageSrc:
-        "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-      imageAlt:
-        "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-    },
-    // More products...
-  ];
+  
+  
 
   return (
     <div className="main-container  relative  bg-gradient-to-r from-black to-[#030d4f]  min-h-screen   min-w-[375px] px-5 md:pl-0 md:pr-2 md:grid  md:grid-cols-[max-content_1fr] md:grid-rows-[max-content_max-content_1fr_max-content] lg:grid-cols-[1fr_1fr_max-content] lg:grid-rows-[max-content_max-content_1fr] lg:overflow-hidden lg:h-screen">
