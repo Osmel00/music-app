@@ -7,12 +7,14 @@ import { Navbar } from "./Navbar";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { ButtonHandleSL } from "./login-register/ButtonLoginRegister";
+import { ButtonLR } from "./login-register/ButtonLR";
+import { useSelector } from "react-redux";
 
-//import { ButtonHandleSL } from "./login-register/ButtonHandleSL";
 export const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const { isLogin } = useSelector((state) => state.authUser);
 
   const toggleMenu = () => {
     setMenu(!menu);
@@ -26,9 +28,9 @@ export const Header = () => {
 
   useEffect(() => {
     handleOnChange();
-  }, [search]);//xl:py-4 xl:px-16 
+  }, [search]); //xl:py-4 xl:px-16
   return (
-    <div className="py-6 flex w-full items-center justify-between md:p-0  "> 
+    <div className="py-6 flex w-full items-center justify-between md:p-0 ">
       <div className="search-container flex  gap-x-2 items-center ">
         <FiSearch className="text-slate-50/60 text-2xl" />
         <input
@@ -39,7 +41,7 @@ export const Header = () => {
           placeholder="Search"
         />
       </div>
-      <ButtonHandleSL/>
+      <ButtonHandleSL />
       <div onClick={toggleMenu} className="cursor-pointer md:hidden">
         {menu ? (
           <IoCloseSharp className="menu-close text-cyan-50 h-5 w-5" />
@@ -61,6 +63,11 @@ export const Header = () => {
               <Logo />
             </div>
             <Navbar setMenu={setMenu} />
+            {!isLogin && (
+              <div className="mt-20">
+                <ButtonLR />
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
       }

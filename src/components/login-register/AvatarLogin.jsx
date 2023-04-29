@@ -5,10 +5,10 @@ import Stack from "@mui/material/Stack";
 import { deepOrange } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import { FiLogOut } from "react-icons/fi";
-import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCredentials, setIsLogin } from "../../app/features/authUserSlice";
+
 export const AvatarLogin = () => {
   const [open, setOpen] = useState(false);
 
