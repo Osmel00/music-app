@@ -1,9 +1,13 @@
-import React from "react";
 
-export const ButtunGoogle = ({text}) => {
+
+export const ButtonGoogle = ({text}) => {
+
   const googleCallServer = () => {
-      window.open("http://localhost:8000/auth/google", "_self");
+      window.open("http://localhost:8000/api/v1/auth/google", "_self");
  }
+ 
+
+
   return (
     <button onClick={googleCallServer}
       aria-label="Continue with google"

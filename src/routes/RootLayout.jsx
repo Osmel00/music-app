@@ -8,12 +8,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper";
 import { Navbar } from "../components/Navbar";
 import { Logo } from "../components/Logo";
-import { Loader } from "../components/Loader";
 import { Outlet } from "react-router";
 import { useSelector } from "react-redux";
+import { useGetGoogleUsersQuery,useGetUsersQuery } from "../app/apiAuthUser";
+import { useDispatch } from "react-redux";
+import { setCredentials, setIsLogin } from "../app/features/authUserSlice";
 
 export const RootLayout = () => {
+  const dispatch = useDispatch();
   const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
+  const { data:socialData}= useGetGoogleUsersQuery();
+  const { data:userData}= useGetUsersQuery();
+  const updateUserState = () =>{
+    if(userData){
+      dispatch(setCredentials(userData))
+      dispatch(setIsLogin({isLogin:true}))
+   }else if(socialData) {
+    dispatch(setCredentials(socialData))
+    dispatch(setIsLogin({isLogin:true}))
+   }
+  }
+  updateUserState();
+ 
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   if (isLoading) {
     return (
@@ -27,10 +43,7 @@ export const RootLayout = () => {
   if (isError) {
     return error.message;
   }
-  const topChart5 = topChart.slice(0, 5);
-
-  
-  
+  const topChart6 = topChart.slice(0, 6);
 
   return (
     <div className="main-container  relative  bg-gradient-to-r from-black to-[#030d4f]  min-h-screen   min-w-[375px] px-5 md:pl-0 md:pr-2 md:grid  md:grid-cols-[max-content_1fr] md:grid-rows-[max-content_max-content_1fr_max-content] lg:grid-cols-[1fr_1fr_max-content] lg:grid-rows-[max-content_max-content_1fr] lg:overflow-hidden lg:h-screen">
@@ -39,7 +52,7 @@ export const RootLayout = () => {
         <Navbar />
       </div>
 
-      <div className="header   md:left-0 absolute z-50 bg-gradient-to-r from-black to-[#030d4f] right-[20px] left-[20px] min-w-[320px]  lg:bg-transparent lg:static md:w-[calc(95vw_-_14rem)] md:px-1 md:h-14 md:col-start-2 md:col-end-[-1] md:row-start-1 md:row-end-2">
+      <div className="header  md:left-0 absolute z-50 bg-gradient-to-r from-black to-[#030d4f] right-[20px] left-[20px] min-w-[320px]  lg:bg-transparent lg:static md:w-[calc(95vw_-_14rem)] md:px-0 md:h-[78px] md:col-start-2 md:col-end-[-1] md:row-start-1 md:row-end-2">
         <Header />
       </div>
 
@@ -51,37 +64,33 @@ export const RootLayout = () => {
               <p className="text-white/60 ">See more</p>
             </div>
 
-            {topChart5?.map((item, index) => {
-              return (
-                <div key={item.key}>
-                  <Link to={"/chart"}>
-                    {" "}
-                    <Charts
-                      code={index + 1 + "."}
-                      index={index}
-                      titleSong={item.title}
-                      author={item.subtitle}
-                      img={item.images?.coverart}
-                      song={item}
-                      id={item.key}
-                      activeSong={activeSong}
-                      isPlaying={isPlaying}
-                      data={topChart5}
-                    />
-                  </Link>
-                </div>
-                // return (
-                //   <div key={item.id}>
-                //     <Charts
-                //       index={index + 1 + "."}
-                //       titleSong={item.name}
-                //       author={item.price}
-                //       img={item.imageSrc}
-                //     />
-                //   </div>
-                // );
-              );
-            })}
+            {topChart6?.filter((element, index) => { 
+              return (element.hub.actions !== undefined)
+              }).map((item,index) => {
+                return (
+                  <div key={item.key}>
+                    <Link to={"/chart"}>
+                      {" "}
+                      <Charts
+                        code={index + 1 + "."}
+                        index={index}
+                        titleSong={item.title}
+                        author={item.subtitle}
+                        img={item.images?.coverart}
+                        song={item}
+                        id={item.key}
+                        activeSong={activeSong}
+                        isPlaying={isPlaying}
+                        data={topChart6}
+                      />
+                    </Link>
+                  </div>
+                  
+                )})} 
+              
+            
+              
+           
           </div>
 
           <div className="top-artist pt-5 pb-12 md:px-2 md:h-max md:w-[calc(95vw_-_14rem)]  md:col-start-2 md:col-end-[-1] md:row-start-3 md:row-end-4 lg:col-start-3 lg:w-[calc(95vw_-_14rem_-_320px)] lg:max-w-[500px] ">
@@ -98,7 +107,7 @@ export const RootLayout = () => {
               modules={[FreeMode]}
               className="mt-4"
             >
-              {topChart5?.map((item) => {
+              {topChart6?.map((item) => {
                 return (
                   <SwiperSlide
                     key={item.key}

@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Logo } from "../Logo";
 import { Link } from "react-router-dom";
-import { ButtunGoogle } from "./ButtonGoogle";
+import { ButtonGoogle } from "./ButtonGoogle";
 import { ButtonGithub } from "./ButtonGithub";
 import { BsEyeSlash } from "react-icons/bs";
 import { AiOutlineEye } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { ButtonSubmit } from "./ButtonSubmit";
 import { useSnackbar } from "notistack";
-import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
+//borrar a prtir de aqui
+import ClickAwayListener from "@mui/base/ClickAwayListener";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import { deepOrange } from "@mui/material/colors";
+import Box from '@mui/material/Box';
+import { AvatarLogin } from "./AvatarLogin";
 export const Login = () => {
+  const navigate = useNavigate();
   const [showPassw, setShowPassw] = useState(false);
-  const [data, setData] = useState("");
-  const [fetchdata, setfetchData] = useState(null);
 
   const { enqueueSnackbar } = useSnackbar();
   const {
@@ -25,37 +30,63 @@ export const Login = () => {
 
   const onSubmit = async (formData, e) => {
     e.target.reset();
-
     try {
-      const url = "http://localhost:8000/auth/login";
-      const {data} = await axios.post(url, {
-        email: formData.email,
-        password: formData.password,
-      });
-      console.log(data);
-      if (data.Error)
-        enqueueSnackbar(data.Error, {
-          variant: "error", //variant="success",error,info,warning,
-        });
+      const url = "http://localhost:8000/api/v1/auth/login";
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          sendMessage(data);
+        })
+        .catch((error) => console.log(error));
+
+      function sendMessage(data) {
+        if (data.Error)
+          return enqueueSnackbar(data.Error, {
+            variant: "error", //variant="success",error,info,warning,
+          });
+        console.log(data);
+        if (data.message) {
+          enqueueSnackbar(data.message, {
+            variant: "success",
+          });
+          navigate("/");
+        }
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getUser = async () => {
-    try {
-      const url = "http://localhost:8000/auth/login/success";
-      const { data } = await axios.get(url, { withCredentials: true });
-      console.log(data);
-      setfetchData(data);
-    } catch (error) {
-      console.log(error);
-    }
+  //********** test *////////
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen((prev) => !prev);
   };
-  useEffect(() => {
-    getUser()
-   
-  }, []);
+
+  const handleClickAway = () => {
+    setOpen(false);
+  };
+  const styles = {
+    position: 'absolute',
+    top: 50,
+    right: 0,
+    left: 0,
+    zIndex: 1,
+    border: '1px solid',
+    p: 1,
+    bgcolor: 'background.paper',
+  };
 
   return (
     <div className="min-h-screen  w-full py-0 px-4 ">
@@ -89,7 +120,7 @@ export const Login = () => {
               </p>
             </div>
           </div>
-          <ButtunGoogle text={"Continue with Google"} />
+          <ButtonGoogle text={"Continue with Google"} />
           <ButtonGithub text={"Continue with Github"} />
 
           <div className="w-full flex items-center justify-between py-5">
@@ -102,9 +133,9 @@ export const Login = () => {
           {/**********  EStoy aqui ***************************************************/}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <lable className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-800">
                 Email
-              </lable>
+              </label>
               <input
                 {...register("email", {
                   required: true,
@@ -128,9 +159,9 @@ export const Login = () => {
             </div>
 
             <div className="mt-6  w-full">
-              <lable className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-800">
                 Password
-              </lable>
+              </label>
               <div className="relative flex items-center justify-center">
                 <input
                   {...register("password", {
@@ -167,7 +198,12 @@ export const Login = () => {
             </div>
           </form>
         </div>
+
+        {/* // <button onClick={handleLogout}>logout</button> */}
+        <AvatarLogin/>
       </div>
+     
+   
     </div>
   );
 };

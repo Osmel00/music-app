@@ -1,11 +1,11 @@
 import React from "react";
 
 export const ButtonGithub = ({ text }) => {
-    const googleCallServer = () => {
-        window.open("http://localhost:8000/auth/github", "_self");
+    const githubCallServer = () => {
+        window.open("http://localhost:8000/api/v1/auth/github", "_self");
    }
   return (
-    <button onClick={googleCallServer}
+    <button onClick={githubCallServer}
      
       aria-label="Continue with github"
       role="button"
