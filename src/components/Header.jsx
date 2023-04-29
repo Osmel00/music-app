@@ -6,8 +6,9 @@ import { Logo } from "./Logo";
 import { Navbar } from "./Navbar";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "framer-motion";
+import { ButtonHandleSL } from "./login-register/ButtonLoginRegister";
 
-import { ButtonHandleSL } from "./login-register/ButtonHandleSL";
+//import { ButtonHandleSL } from "./login-register/ButtonHandleSL";
 export const Header = () => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
