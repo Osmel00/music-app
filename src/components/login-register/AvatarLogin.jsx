@@ -75,7 +75,7 @@ export const AvatarLogin = () => {
               />
               <div className="flex flex-col justify-center w-44">
                 <p className="font-semibold">{user?.name}</p>
-                <small className="font-thin truncate text-[12px]">faure00@googlemail.com</small>
+                <small className="font-thin truncate text-[12px]">{user?.email}</small>
               </div>
             </div>
             <hr className="text-white w-full" />

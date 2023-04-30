@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 import { useGetGoogleUsersQuery, useGetUsersQuery } from "../app/apiAuthUser";
 import { useDispatch } from "react-redux";
 import { setCredentials, setIsLogin } from "../app/features/authUserSlice";
-import { ButtonLR } from "../components/login-register/ButtonLR";
+
 
 export const RootLayout = () => {
   const dispatch = useDispatch();
@@ -21,10 +21,12 @@ export const RootLayout = () => {
   const { data: socialData } = useGetGoogleUsersQuery();
   const { data: userData } = useGetUsersQuery();
   const updateUserState = () => {
-    if (userData) {
+    if (userData && !userData.Error) {
+      console.log('entre a userData:',userData);
       dispatch(setCredentials(userData));
       dispatch(setIsLogin({ isLogin: true }));
-    } else if (socialData) {
+    } else if (socialData && !socialData.Error) {
+      console.log('entre a socialData:',socialData);
       dispatch(setCredentials(socialData));
       dispatch(setIsLogin({ isLogin: true }));
     }

@@ -200,7 +200,7 @@ export const Login = () => {
         </div>
 
         {/* // <button onClick={handleLogout}>logout</button> */}
-        <AvatarLogin/>
+      
       </div>
      
    
