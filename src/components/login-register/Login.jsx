@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState,  } from "react";
 import { Logo } from "../Logo";
 import { Link } from "react-router-dom";
 import { ButtonGoogle } from "./ButtonGoogle";
@@ -9,13 +9,7 @@ import { useForm } from "react-hook-form";
 import { ButtonSubmit } from "./ButtonSubmit";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
-//borrar a prtir de aqui
-import ClickAwayListener from "@mui/base/ClickAwayListener";
-import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import { deepOrange } from "@mui/material/colors";
-import Box from '@mui/material/Box';
-import { AvatarLogin } from "./AvatarLogin";
+
 export const Login = () => {
   const navigate = useNavigate();
   const [showPassw, setShowPassw] = useState(false);
@@ -87,11 +81,11 @@ export const Login = () => {
     p: 1,
     bgcolor: 'background.paper',
   };
-
+///{border-2 border-red-500}
   return (
-    <div className="min-h-screen  w-full py-0 px-4 ">
-      <div className="flex flex-col items-center justify-center">
-        <div className="bg-white lg:w-1/3  md:w-1/2 w-full px-10 pb-10 pt-5 mt-8">
+    <div className="min-h-screen  w-full py-0 px-4 bg-gradient-to-r from-slate-300 to-slate-500 ">
+      <div className="flex flex-col items-center justify-center  min-h-screen">
+        <div className="bg-white  w-full  md:w-[500px] px-10 pb-10 rounded-lg shadow-2xl"> 
           <div className=" flex flex-col">
             <div className="flex justify-center">
               <Logo />

@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaPlay } from "react-icons/fa";
 import { IoPauseSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";

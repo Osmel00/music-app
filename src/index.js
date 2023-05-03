@@ -15,6 +15,7 @@ import { Search } from "./routes/Search";
 import { Login } from "./components/login-register/Login";
 import { Signup } from "./components/login-register/Signup";
 import { SnackbarProvider, } from "notistack";
+import { LikedSong } from "./routes/LikedSong";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
+  {
+    path: "/collection/tracks",
+    element: <LikedSong />,
+  },
+  
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
