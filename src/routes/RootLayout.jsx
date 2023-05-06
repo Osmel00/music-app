@@ -123,17 +123,7 @@ export const RootLayout = () => {
                     </div>
                   </SwiperSlide>
                 );
-                // return (
-                //   <SwiperSlide
-                //     key={item.id}
-                //     className="shadow-lg rounded-full animate-slideright"
-                //     style={{ width: "25%", maxWidth: "120px", height: "auto" }}
-                //   >
-                //     <div>
-                //       <Artist img={item.imageSrc} />
-                //     </div>
-                //   </SwiperSlide>
-                // );
+                
               })}
             </Swiper>
           </div>

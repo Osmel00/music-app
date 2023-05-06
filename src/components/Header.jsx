@@ -10,7 +10,7 @@ import { ButtonHandleSL } from "./login-register/ButtonLoginRegister";
 import { ButtonLR } from "./login-register/ButtonLR";
 import { useSelector } from "react-redux";
 
-export const Header = () => {
+export const Header = ({isLikedSongs}) => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -31,7 +31,7 @@ export const Header = () => {
   }, [search]); //xl:py-4 xl:px-16
   return (
     <div className="py-6 flex w-full items-center justify-between md:p-0 ">
-      <div className="search-container flex  gap-x-2 items-center ">
+     {!isLikedSongs && <div className="search-container flex  gap-x-2 items-center ">
         <FiSearch className="text-slate-50/60 text-2xl" />
         <input
           onChange={(e) => setSearch(e.target.value)}
@@ -40,7 +40,7 @@ export const Header = () => {
           value={search}
           placeholder="Search"
         />
-      </div>
+      </div>} 
       <ButtonHandleSL />
       <div onClick={toggleMenu} className="cursor-pointer md:hidden">
         {menu ? (

@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/media-has-caption */
+
 import React, { useRef, useState, useEffect } from "react";
 import {useSelector,useDispatch } from "react-redux";
 import {playPause } from "../app/features/playerSlice";
@@ -28,7 +28,7 @@ const Player = ({
         ref.current.pause();
       }
     }
-  });
+  },[activeSong,isPlaying]);
   useEffect(() => {
     ref.current.volume = volume;
   }, [volume]);
