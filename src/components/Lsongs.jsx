@@ -31,7 +31,7 @@ export const Lsongs = ({
 
   const handleSongHeart = () => {
     setIsLiked(!isLiked);
-  }
+  };
   return (
     <div className="main-container-movil mt-6  ">
       <div className="songs-container-item flex justify-between items-center hover:bg-[#4c426e]/50 rounded-lg cursor-pointer p-3 ">
@@ -65,7 +65,7 @@ export const Lsongs = ({
         </div>
 
         <div className="conteiner-play-pause-ilike flex gap-6 ">
-          <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked}/>
+          <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked} />
 
           <div className="flex justify-center items-center w-[35px] h-[35px] rounded-full bg-white/70 text-[#2a2a80] cursor-pointer ">
             {isPlaying && activeSong.key === key ? (
