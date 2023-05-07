@@ -1,4 +1,4 @@
-
+import {BsGithub} from 'react-icons/bs'
 
 export const ButtonGoogle = ({text}) => {
 
@@ -38,9 +38,10 @@ export const ButtonGoogle = ({text}) => {
           fill="#EB4335"
         />
       </svg>
-      <p className="text-base font-bold ml-4 text-gray-700 ">
+      <p className="text-base font-bold ml-4 text-gray-500 ">
         {/* Continue with Google */}
         {text}
+       
       </p>
     </button>
   );

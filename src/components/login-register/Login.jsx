@@ -1,4 +1,4 @@
-import React, { useState,  } from "react";
+import React, { useState } from "react";
 import { Logo } from "../Logo";
 import { Link } from "react-router-dom";
 import { ButtonGoogle } from "./ButtonGoogle";
@@ -72,20 +72,20 @@ export const Login = () => {
     setOpen(false);
   };
   const styles = {
-    position: 'absolute',
+    position: "absolute",
     top: 50,
     right: 0,
     left: 0,
     zIndex: 1,
-    border: '1px solid',
+    border: "1px solid",
     p: 1,
-    bgcolor: 'background.paper',
+    bgcolor: "background.paper",
   };
-///{border-2 border-red-500}
+  ///{border-2 border-red-500}
   return (
-    <div className="min-h-screen  w-full py-0 px-4 bg-gradient-to-r from-slate-300 to-slate-500 ">
+    <div className="min-h-screen  w-full py-0 px-4 bg-gradient-to-r from-[#0F172A] to-[#0F172A]">
       <div className="flex flex-col items-center justify-center  min-h-screen">
-        <div className="bg-white  w-full  md:w-[500px] px-10 pb-10 rounded-lg shadow-2xl"> 
+        <div className="w-full  md:w-[500px] px-10 pb-10 ">
           <div className=" flex flex-col">
             <div className="flex justify-center">
               <Logo />
@@ -95,18 +95,18 @@ export const Login = () => {
                 tabIndex={0}
                 role="heading"
                 aria-label="Login to your account"
-                className="text-2xl font-extrabold leading-6 text-gray-800"
+                className="text-2xl font-extrabold leading-6 text-gray-100"
               >
                 Login to your account
               </p>
-              <p className="text-sm mt-4 leading-none font-bold  text-gray-800">
+              <p className="text-sm mt-4 leading-none font-bold  text-gray-500">
                 Don't have an account?{" "}
                 <Link
                   to={"/signup"}
                   tabIndex={0}
                   role="link"
                   aria-label="Sign up here"
-                  className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer ml-2"
+                  className="text-sm font-medium leading-none underline text-indigo-700 cursor-pointer ml-2"
                 >
                   {" "}
                   Sign up here
@@ -118,16 +118,16 @@ export const Login = () => {
           <ButtonGithub text={"Continue with Github"} />
 
           <div className="w-full flex items-center justify-between py-5">
-            <hr className="w-full bg-gray-400" />
+            <hr className="w-full " />
             <p className="text-base font-medium leading-4 px-2.5 text-gray-400">
               OR
             </p>
-            <hr className="w-full bg-gray-400  " />
+            <hr className="w-full" />
           </div>
           {/**********  EStoy aqui ***************************************************/}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <label className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-500">
                 Email
               </label>
               <input
@@ -141,7 +141,7 @@ export const Login = () => {
                 placeholder="E-Mail."
                 className={`border ${
                   errors.email ? "border-red-500" : "border-gray-700"
-                } rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2`}
+                }  rounded-3xl focus:outline-none text-xs font-medium leading-none text-gray-100 py-4 w-full pl-6 mt-2 bg-transparent`}
               />
 
               {errors?.email && (
@@ -153,7 +153,7 @@ export const Login = () => {
             </div>
 
             <div className="mt-6  w-full">
-              <label className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-500">
                 Password
               </label>
               <div className="relative flex items-center justify-center">
@@ -169,15 +169,15 @@ export const Login = () => {
                   placeholder="Password"
                   className={`border ${
                     errors.email ? "border-red-500" : "border-gray-700"
-                  } rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2
-                `}
+                  } rounded-3xl focus:outline-none text-xs font-medium leading-none text-gray-100 py-4 w-full pl-6 mt-2
+                  bg-transparent`}
                 />
 
                 <div
                   className="absolute right-0 mt-2 mr-3 cursor-pointer"
                   onClick={(e) => setShowPassw(!showPassw)}
                 >
-                  {showPassw ? <AiOutlineEye /> : <BsEyeSlash />}
+                  {showPassw ? <AiOutlineEye color="#677180" /> : <BsEyeSlash color="#677180" />}
                 </div>
               </div>
               {errors?.password && (
@@ -192,12 +192,7 @@ export const Login = () => {
             </div>
           </form>
         </div>
-
-        {/* // <button onClick={handleLogout}>logout</button> */}
-      
       </div>
-     
-   
     </div>
   );
 };

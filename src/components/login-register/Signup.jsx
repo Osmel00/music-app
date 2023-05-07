@@ -63,9 +63,9 @@ export const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen  w-full py-0 px-4 bg-gradient-to-r from-slate-300 to-slate-500 ">
+    <div className="min-h-screen  w-full py-0 px-4 bg-gradient-to-r from-[#0F172A] to-[#0F172A]">
       <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="bg-white  w-full  md:w-[500px] px-10 pb-10 rounded-lg shadow-2xl"> 
+      <div className="w-full  md:w-[500px] px-10 pb-10"> 
           <div className="flex flex-col  ">
             <div className="flex justify-center">
               <Logo />
@@ -75,18 +75,18 @@ export const Signup = () => {
                 tabIndex={0}
                 role="heading"
                 aria-label="Login to your account"
-                className="text-2xl font-extrabold leading-6 text-gray-800"
+                className="text-2xl font-extrabold leading-6 text-gray-100"
               >
                 Register with your email address
               </p>
-              <p className="text-sm mt-4 font-bold leading-none text-gray-800">
+              <p className="text-sm mt-4 font-bold leading-none text-gray-500">
                 You already have an account?{" "}
                 <Link
                   to={"/Login"}
                   tabIndex={0}
                   role="link"
                   aria-label="Sign up here"
-                  className="text-sm font-medium leading-none underline text-gray-800 cursor-pointer ml-2"
+                  className="text-sm font-medium leading-none underline text-indigo-700 cursor-pointer ml-2"
                 >
                   {" "}
                   Sign in here
@@ -107,7 +107,7 @@ export const Signup = () => {
           {/*************************************  estoy aqui****************************** */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <label className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-500">
                 Email
               </label>
               <input
@@ -121,7 +121,7 @@ export const Signup = () => {
                 placeholder="E-Mail."
                 className={` border ${
                   errors.email ? "border-red-500" : "border-gray-700"
-                } rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2`}
+                } rounded-3xl focus:outline-none text-xs font-medium leading-none text-gray-100 py-4 w-full pl-6 my-3 bg-transparent`}
               />
               {errors?.email && (
                 <small className="text-red-500 font-bold">
@@ -132,7 +132,7 @@ export const Signup = () => {
             </div>
 
             <div>
-              <label className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-500">
                 What do you want us to call you?
               </label>
               <input
@@ -143,7 +143,7 @@ export const Signup = () => {
                 placeholder="Put a profile name."
                 className={` border ${
                   errors.name ? "border-red-500" : "border-gray-700"
-                } rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2`}
+                } rounded-3xl focus:outline-none text-xs font-medium leading-none text-gray-100 py-4 w-full pl-6 mt-2 bg-transparent`}
               />
               {errors?.name && (
                 <small className="text-red-500 font-bold">
@@ -152,7 +152,7 @@ export const Signup = () => {
               )}
             </div>
             <div className="mt-6  w-full">
-              <label className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-500">
                 Password
               </label>
               <div className="relative flex items-center justify-center">
@@ -168,13 +168,13 @@ export const Signup = () => {
                   placeholder="Password"
                   className={`border ${
                     errors.password ? "border-red-500" : "border-gray-700"
-                  } rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2`}
+                  } rounded-3xl focus:outline-none text-xs font-medium leading-none text-gray-100 py-4 w-full pl-6 mt-2 bg-transparent`}
                 />
                 <div
                   className="absolute right-0 mt-2 mr-3 cursor-pointer"
                   onClick={(e) => setShowPassw(!showPassw)}
                 >
-                  {showPassw ? <AiOutlineEye /> : <BsEyeSlash />}
+                  {showPassw ? <AiOutlineEye color="#677180" /> : <BsEyeSlash color="#677180" />}
                 </div>
               </div>
               {errors?.password && (
@@ -184,7 +184,7 @@ export const Signup = () => {
               )}
             </div>
             <div className="mt-6  w-full">
-              <label className="text-sm font-bold leading-none text-gray-800">
+              <label className="text-sm font-bold leading-none text-gray-500">
                 Repeat Password
               </label>
               <div className="relative flex items-center justify-center">
@@ -201,13 +201,13 @@ export const Signup = () => {
                   placeholder="Repeat Password."
                   className={`border ${
                     errors.repeatPassword ? "border-red-500" : "border-gray-700"
-                  } rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2`}
+                  } rounded-3xl focus:outline-none text-xs font-medium leading-none text-gray-100 py-4 w-full pl-6 mt-2 bg-transparent`}
                 />
                 <div
                   className="absolute right-0 mt-2 mr-3 cursor-pointer"
                   onClick={(e) => setShowPassw(!showPassw)}
                 >
-                  {showPassw ? <AiOutlineEye /> : <BsEyeSlash />}
+                  {showPassw ? <AiOutlineEye color="#677180" /> : <BsEyeSlash color="#677180" />}
                 </div>
               </div>
               {errors?.repeatPassword && (

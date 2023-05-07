@@ -3,7 +3,7 @@ const API_TOKEN = process.env.REACT_APP_API_TOKEN;
 export const servicesApi = createApi({
   reducerPath: "servicesApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://shazam-core.p.rapidapi.com/",
+    //baseUrl: "https://shazam-core.p.rapidapi.com/",
     prepareHeaders:(headers)=>{
         headers.set('X-RapidAPI-Key', API_TOKEN);
         return headers;
