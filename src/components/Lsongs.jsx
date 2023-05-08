@@ -45,7 +45,7 @@ export const Lsongs = ({
           <div className="flex flex-col flex-wrap ">
             <Link to={`/songsdetails/${key}`}>
               {" "}
-              <h3 className="text-base font-bold capitalize hover:text-blue-400 max-w-[192px] xl:max-w-[280px] truncate">
+              <h3 className="text-base font-bold capitalize hover:text-blue-400 w-32  md:w-72 lg:w-96 truncate ">
                 {titleSong}
               </h3>
             </Link>
