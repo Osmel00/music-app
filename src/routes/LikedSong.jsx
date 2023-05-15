@@ -8,14 +8,19 @@ import { Logo } from "../components/Logo";
 import { Navbar } from "../components/Navbar";
 import { Header } from "../components/Header";
 import {FaHeart} from "react-icons/fa";
+import { useGetLikedSongsQuery } from "../app/apiAuthUser";
 
 export const LikedSong = () => {
-  const { data: topChart5, isLoading, isError, error } = useGetTopChartsQuery();
+  const { data: topChart5,} = useGetTopChartsQuery();
+  const {profile,isLogin } = useSelector((state) => state.authUser);
+  const { data, isLoading, isError, error } = useGetLikedSongsQuery(profile?.user?.id);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
- //bg-gradient-to-br from-[#463288] to-violet-900
+  
+ 
+  console.log(data?.data?.songs);
   return (
     <div className="main-container relative  min-h-screen px-3 md:p-0 likedSong-container bg-gradient-to-r from-black to-[#030d4f]  md:grid   md:grid-cols-[max-content_1fr] md:grid-rows-[max-content_1fr] ">
-      <div className="header-container md:hidden  ">
+      <div className="header-container md:hidden">
         <Header isLikedSongs={true}/>
       </div>
 
@@ -25,9 +30,9 @@ export const LikedSong = () => {
       </div>
 
       <div className="avatar-container px-4 md:relative md:px-6  md:h-auto   md:bg-gradient-to-b from-[#463288] to-[#010623] ">
-        <div className="avatar flex items-center gap-7 md:absolute md:top-5 md:right-5">
-          <p className=" md:hidden text-white font-bold text-2xl"> Your Library</p>
-          <AvatarLogin />
+        <div className="avatar flex items-center gap-7 md:absolute md:top-5 md:right-5 ">
+           <p className=" md:hidden text-white font-bold text-2xl"> Your Library</p>
+           <div className="hidden md:block"><AvatarLogin /> </div>
           
         </div>
         <div className="header-container hidden md:flex gap-x-3 xl:gap-8 md:py-10 h-auto text-white">
@@ -43,7 +48,9 @@ export const LikedSong = () => {
       </div>
       <div className="likedSong-container overflow-y-auto h-[75vh] md:h-[60vh] xl:h-[57vh]">
       <p className="text-white font-bold text-xl pt-10">Liked Songs</p>
-      {topChart5?.map((item, index) => {
+      {data?.data?.songs?.map((item1, index) => {
+        let [item]=item1.data;
+        console.log(item);
         return (
           <div key={item.key + index}>
             {" "}

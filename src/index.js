@@ -16,6 +16,8 @@ import { Login } from "./components/login-register/Login";
 import { Signup } from "./components/login-register/Signup";
 import { SnackbarProvider, } from "notistack";
 import { LikedSong } from "./routes/LikedSong";
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,8 +68,10 @@ const router = createBrowserRouter([
   },
   
 ]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  
   <React.StrictMode>
     <Provider store={store}>
       <SnackbarProvider maxSnack={3} autoHideDuration={5000}>

@@ -14,10 +14,13 @@ export const apiAuthUsers = createApi({
     getUsers: builder.query({
       query: () => `user`,
     }),
+    getLikedSongs: builder.query({
+      query: (userId) => `songs/${userId}`,
+    }),
   }),
 });
 
-export const { useGetGoogleUsersQuery,useGetUsersQuery} = apiAuthUsers;
+export const { useGetGoogleUsersQuery,useGetUsersQuery,useGetLikedSongsQuery} = apiAuthUsers;
 
 // GetLogOut: builder.query({
 //   query: () => `logout`,

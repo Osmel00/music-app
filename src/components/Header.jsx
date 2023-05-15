@@ -10,7 +10,7 @@ import { ButtonHandleSL } from "./login-register/ButtonLoginRegister";
 import { ButtonLR } from "./login-register/ButtonLR";
 import { useSelector } from "react-redux";
 
-export const Header = ({isLikedSongs}) => {
+export const Header = ({ isLikedSongs }) => {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -28,20 +28,25 @@ export const Header = ({isLikedSongs}) => {
 
   useEffect(() => {
     handleOnChange();
-  }, [search]); //xl:py-4 xl:px-16
+  }, [search]); //xl:py-4 xl:px-16   !isLikedSongs &&
   return (
     <div className="py-6 flex w-full items-center justify-between md:p-0 ">
-     {!isLikedSongs && <div className="search-container flex  gap-x-2 items-center ">
-        <FiSearch className="text-slate-50/60 text-2xl" />
-        <input
-          onChange={(e) => setSearch(e.target.value)}
-          className="bg-transparent outline-none text-cyan-50"
-          type="text"
-          value={search}
-          placeholder="Search"
-        />
-      </div>} 
+      
+        <div className={`search-container flex  gap-x-2 items-center ${isLikedSongs?'invisible': 'visible' } `}>
+          <FiSearch className="text-slate-50/60 text-2xl" />
+          <input
+            onChange={(e) => setSearch(e.target.value)}
+            className="bg-transparent outline-none text-cyan-50"
+            type="text"
+            value={search}
+            placeholder="Search"
+          />
+        </div>
+      
       <ButtonHandleSL />
+    
+     
+
       <div onClick={toggleMenu} className="cursor-pointer md:hidden">
         {menu ? (
           <IoCloseSharp className="menu-close text-cyan-50 h-5 w-5" />

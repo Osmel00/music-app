@@ -4,7 +4,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi";
 import { IoIosPeople } from "react-icons/io";
 import { SiSharp } from "react-icons/si";
-import { ButtonLikedSongs } from "./buttonLikedSongs";
+import { ButtonLikedS } from "./ButtonLikedS";
 
 
 export const Navbar = ({setMenu}) => {
@@ -101,7 +101,7 @@ export const Navbar = ({setMenu}) => {
           <Link to={"/chart"}> Top Charts</Link>
         </div>
       </div>
-      <ButtonLikedSongs/>
+     <Link to={'/collection/tracks'}><ButtonLikedS/></Link> 
     </div>
   );
 };
