@@ -7,10 +7,11 @@ import VolumeBar from "./VolumeBar";
 import { useSelector, useDispatch } from "react-redux";
 import { playPause, nextSong, prevSong } from "../app/features/playerSlice";
 import { AddSongHearts } from "./AddSongHearts";
-
+import { FetchSong } from "../assets/useFetchSong";
 const MusicPlayer = () => {
   const { isPlaying, activeSong, currentSongs, isActive, currentIndex } =
     useSelector((state) => state.player);
+  const {profile} = useSelector((state) => state.authUser);
   const dispatch = useDispatch();
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
@@ -19,13 +20,7 @@ const MusicPlayer = () => {
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  // useEffect(() => {
-  //   if (currentSongs.length){
-
-  //     dispatch(playPause(true))
-  //     console.log('esta entrando');
-  //   }
-  // }, [currentIndex]);
+  
   const handlePlayPause = () => {
     if (currentSongs.length) {
       if (isPlaying) {
@@ -37,7 +32,7 @@ const MusicPlayer = () => {
   };
 
   const handleNextSong = () => {
-    //dispatch(playPause(false));
+     //dispatch(playPause(false));
 
     if (!shuffle) {
       dispatch(nextSong((currentIndex + 1) % currentSongs.length));
@@ -54,9 +49,12 @@ const MusicPlayer = () => {
       dispatch(prevSong(currentIndex - 1));
     }
   };
-
+//*estoy aqui
   const handleSongHeart = () => {
     setIsLiked(!isLiked);
+    console.log(activeSong,profile);
+    FetchSong({userId:profile.user.id,activeSong})
+    console.log('todo ok jose luis');
   };
   return (
     <div className="relative sm:px-2 lg:px-8 w-full flex items-center justify-between">
@@ -93,11 +91,12 @@ const MusicPlayer = () => {
         <Player
           activeSong={activeSong}
           isPlaying={isPlaying}
-          onLoadedData={(event) => setDuration(event.target.duration)}
-          onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
+          onLoadedData={(event) => setDuration(event.target.duration)} //take the total duration of the song
+          onTimeUpdate={(event) => setAppTime(event.target.currentTime)} //take the current time of the song
           seekTime={seekTime}
           volume={volume}
           repeat={repeat}
+         
         />
       </div>
       <VolumeBar

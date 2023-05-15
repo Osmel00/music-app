@@ -13,7 +13,6 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const navigate = useNavigate();
   const [showPassw, setShowPassw] = useState(false);
-
   const { enqueueSnackbar } = useSnackbar();
   const {
     register,
@@ -62,15 +61,9 @@ export const Login = () => {
 
   //********** test *////////
 
-  const [open, setOpen] = React.useState(false);
+  
 
-  const handleClick = () => {
-    setOpen((prev) => !prev);
-  };
-
-  const handleClickAway = () => {
-    setOpen(false);
-  };
+ 
   const styles = {
     position: "absolute",
     top: 50,

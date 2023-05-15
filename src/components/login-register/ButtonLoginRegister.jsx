@@ -10,7 +10,7 @@ export const ButtonHandleSL = () => {
     isLogin,
   } = useSelector((state) => state.authUser);
 
-  console.log(isLogin);
+  
   return (
     <div className="container-button  font-bold w-[236px] py-3 flex justify-end items-center">
       {isLogin ? (

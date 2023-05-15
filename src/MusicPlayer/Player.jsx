@@ -7,13 +7,13 @@ const Player = ({
   isPlaying,
   volume,
   seekTime,
-  onEnded,
   onTimeUpdate,
   onLoadedData,
   repeat,
 }) => {
   const ref = useRef(null);
   const dispatch = useDispatch();
+  const [onEnded, setOnEnded] = useState(false);
   useEffect(() => {
     if (ref.current) {
       if (isPlaying) {
@@ -28,7 +28,7 @@ const Player = ({
         ref.current.pause();
       }
     }
-  },[activeSong,isPlaying]);
+  },[activeSong,isPlaying,onEnded]);
   useEffect(() => {
     ref.current.volume = volume;
   }, [volume]);
@@ -41,8 +41,8 @@ const Player = ({
     <audio
       src={activeSong?.hub?.actions[1]?.uri}
       ref={ref}
-       loop={repeat}
-      // onEnded={onEnded}
+      loop={repeat}
+      onEnded={() => setOnEnded(!onEnded)}
       onTimeUpdate={onTimeUpdate}
       onLoadedData={onLoadedData}
     />

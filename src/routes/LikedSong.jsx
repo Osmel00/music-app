@@ -12,7 +12,7 @@ import {FaHeart} from "react-icons/fa";
 export const LikedSong = () => {
   const { data: topChart5, isLoading, isError, error } = useGetTopChartsQuery();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  //const topChart5 = topChart?.slice(0, 5);
+ //bg-gradient-to-br from-[#463288] to-violet-900
   return (
     <div className="main-container relative  min-h-screen px-3 md:p-0 likedSong-container bg-gradient-to-r from-black to-[#030d4f]  md:grid   md:grid-cols-[max-content_1fr] md:grid-rows-[max-content_1fr] ">
       <div className="header-container md:hidden  ">
@@ -24,7 +24,7 @@ export const LikedSong = () => {
         <Navbar />
       </div>
 
-      <div className="avatar-container px-4 md:relative md:px-6  md:h-auto   md:bg-gradient-to-br from-[#463288] to-violet-900">
+      <div className="avatar-container px-4 md:relative md:px-6  md:h-auto   md:bg-gradient-to-b from-[#463288] to-[#010623] ">
         <div className="avatar flex items-center gap-7 md:absolute md:top-5 md:right-5">
           <p className=" md:hidden text-white font-bold text-2xl"> Your Library</p>
           <AvatarLogin />
@@ -45,7 +45,7 @@ export const LikedSong = () => {
       <p className="text-white font-bold text-xl pt-10">Liked Songs</p>
       {topChart5?.map((item, index) => {
         return (
-          <div key={item.key}>
+          <div key={item.key + index}>
             {" "}
             <Lsongs
               code={index + 1 + "."}

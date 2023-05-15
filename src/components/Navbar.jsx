@@ -4,6 +4,8 @@ import { AiOutlineHome } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi";
 import { IoIosPeople } from "react-icons/io";
 import { SiSharp } from "react-icons/si";
+import { ButtonLikedSongs } from "./buttonLikedSongs";
+
 
 export const Navbar = ({setMenu}) => {
   const [windowWidth,setWindowWidth] = useState(window.innerWidth);
@@ -99,6 +101,7 @@ export const Navbar = ({setMenu}) => {
           <Link to={"/chart"}> Top Charts</Link>
         </div>
       </div>
+      <ButtonLikedSongs/>
     </div>
   );
 };
