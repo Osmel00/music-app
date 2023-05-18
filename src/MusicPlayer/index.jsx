@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { playPause, nextSong, prevSong } from "../app/features/playerSlice";
 import { AddSongHearts } from "./AddSongHearts";
 import { FetchSong } from "../assets/useFetchSong";
-const MusicPlayer = () => {
+const MusicPlayer = ({hidden}) => {
   const { isPlaying, activeSong, currentSongs, isActive, currentIndex } =
     useSelector((state) => state.player);
   const {profile} = useSelector((state) => state.authUser);
@@ -65,7 +65,7 @@ const MusicPlayer = () => {
           isActive={isActive}
         />
         
-        <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked} />
+       {hidden && <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked} />} 
         
       </div>
 

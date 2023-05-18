@@ -13,7 +13,6 @@ import { useSelector } from "react-redux";
 import { useGetGoogleUsersQuery, useGetUsersQuery } from "../app/apiAuthUser";
 import { useDispatch } from "react-redux";
 import { setCredentials, setIsLogin } from "../app/features/authUserSlice";
-import { useEffect } from "react";
 
 export const RootLayout = () => {
   const dispatch = useDispatch();
@@ -22,18 +21,15 @@ export const RootLayout = () => {
   const { data: userData } = useGetUsersQuery();
   const updateUserState = () => {
     if (userData && !userData.Error) {
-      console.log("entre a userData:", userData);
       dispatch(setCredentials(userData));
       dispatch(setIsLogin({ isLogin: true }));
     } else if (socialData && !socialData.Error) {
-      console.log("entre a socialData:", socialData);
       dispatch(setCredentials(socialData));
       dispatch(setIsLogin({ isLogin: true }));
     }
   };
   updateUserState();
   const topChart6 = topChart?.slice(0, 6);
-  console.log(topChart6);
 
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   if (isLoading) {
@@ -162,7 +158,7 @@ export const RootLayout = () => {
 
       {activeSong?.title && (
         <div className="flex  absolute h-28 bottom-0 left-0 right-0 animate-slideup bg-gradient-to-br from-white/10 to-[#031634] backdrop-blur-lg rounded-t-3xl z-10">
-          <MusicPlayer />
+          <MusicPlayer hidden={true} />
         </div>
       )}
     </div>

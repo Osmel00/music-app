@@ -1,7 +1,5 @@
 import { FaPlay } from "react-icons/fa";
 import { IoPauseSharp } from "react-icons/io5";
-import { FiHeart } from "react-icons/fi";
-import { FaHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../app/features/playerSlice";
 import { Link } from "react-router-dom";
@@ -18,6 +16,8 @@ export const Lsongs = ({
   song,
   isPlaying,
   id: key,
+  setOnHeard
+  
 }) => {
   const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(true);
@@ -31,6 +31,7 @@ export const Lsongs = ({
 
   const handleSongHeart = () => {
     setIsLiked(!isLiked);
+    setOnHeard((prev)=>!prev)
   };
   return (
     <div className="main-container-movil mt-6  ">

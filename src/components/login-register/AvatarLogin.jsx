@@ -5,13 +5,13 @@ import Stack from "@mui/material/Stack";
 import { deepOrange } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import { FiLogOut } from "react-icons/fi";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector,  useDispatch} from "react-redux";
 import { setCredentials, setIsLogin } from "../../app/features/authUserSlice";
+
 
 export const AvatarLogin = () => {
   const [open, setOpen] = useState(false);
-
+  
   const handleClick = () => {
     setOpen((prev) => !prev);
   };
@@ -42,10 +42,13 @@ export const AvatarLogin = () => {
       fetch("http://localhost:8000/api/v1/auth/logout", {
         credentials: "include",
       })
-        .then((response) => response.json())
+        .then((response) => response.json()).then(()=>{
+          dispatch(setCredentials({ profile: null }));
+          dispatch(setIsLogin({ isLogin: false }));
+          window.location.replace("/")
+        })
         .catch((error) => console.log(error));
-      dispatch(setCredentials({ profile: null }));
-      dispatch(setIsLogin({ isLogin: false }));
+      
     } catch (error) {
       console.log(error);
     }

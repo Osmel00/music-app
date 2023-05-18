@@ -101,7 +101,7 @@ export const Navbar = ({setMenu}) => {
           <Link to={"/chart"}> Top Charts</Link>
         </div>
       </div>
-     <Link to={'/collection/tracks'}><ButtonLikedS/></Link> 
+     <ButtonLikedS/> 
     </div>
   );
 };
