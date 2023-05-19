@@ -8,10 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { playPause, nextSong, prevSong } from "../app/features/playerSlice";
 import { AddSongHearts } from "./AddSongHearts";
 import { FetchSong } from "../assets/useFetchSong";
-const MusicPlayer = ({hidden}) => {
+const MusicPlayer = ({ hidden }) => {
   const { isPlaying, activeSong, currentSongs, isActive, currentIndex } =
     useSelector((state) => state.player);
-  const {profile} = useSelector((state) => state.authUser);
+  const { profile } = useSelector((state) => state.authUser);
   const dispatch = useDispatch();
   const [duration, setDuration] = useState(0);
   const [seekTime, setSeekTime] = useState(0);
@@ -20,7 +20,10 @@ const MusicPlayer = ({hidden}) => {
   const [repeat, setRepeat] = useState(false);
   const [shuffle, setShuffle] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
-  
+
+  useEffect(() => {
+    setIsLiked(false);
+  }, [activeSong]);
   const handlePlayPause = () => {
     if (currentSongs.length) {
       if (isPlaying) {
@@ -32,7 +35,7 @@ const MusicPlayer = ({hidden}) => {
   };
 
   const handleNextSong = () => {
-     //dispatch(playPause(false));
+    //dispatch(playPause(false));
 
     if (!shuffle) {
       dispatch(nextSong((currentIndex + 1) % currentSongs.length));
@@ -49,12 +52,18 @@ const MusicPlayer = ({hidden}) => {
       dispatch(prevSong(currentIndex - 1));
     }
   };
-//*estoy aqui
+  //*estoy aqui
   const handleSongHeart = () => {
+    const urlLiked = "http://localhost:8000/api/v1/auth/songs";
+    const urlDisLiked = "http://localhost:8000/api/v1/auth/removeSongsLiked";
+    if (!isLiked) {
+      FetchSong({ userId: profile.user.id, activeSong }, urlLiked);
+    } else {
+      FetchSong({ id: profile.user.id, songKey: activeSong.key }, urlDisLiked);
+    }
     setIsLiked(!isLiked);
-    console.log(activeSong,profile);
-    FetchSong({userId:profile.user.id,activeSong})
-    console.log('todo ok jose luis');
+    console.log(activeSong, profile);
+    
   };
   return (
     <div className="relative sm:px-2 lg:px-8 w-full flex items-center justify-between">
@@ -64,9 +73,10 @@ const MusicPlayer = ({hidden}) => {
           activeSong={activeSong}
           isActive={isActive}
         />
-        
-       {hidden && <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked} />} 
-        
+
+        {hidden && (
+          <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked} />
+        )}
       </div>
 
       <div className="flex-1 flex flex-col items-center justify-center ">
@@ -96,7 +106,6 @@ const MusicPlayer = ({hidden}) => {
           seekTime={seekTime}
           volume={volume}
           repeat={repeat}
-         
         />
       </div>
       <VolumeBar

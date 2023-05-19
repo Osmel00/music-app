@@ -3,8 +3,9 @@ import { IoPauseSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { setActiveSong, playPause } from "../app/features/playerSlice";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { AddSongHearts } from "../MusicPlayer/AddSongHearts";
+import { FetchSong } from "../assets/useFetchSong";
+
 export const Lsongs = ({
   img,
   titleSong,
@@ -16,11 +17,12 @@ export const Lsongs = ({
   song,
   isPlaying,
   id: key,
-  setOnHeard
-  
+  setOnHeard,
+  onHeard,
+  profile,
+  refetch,
 }) => {
   const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(true);
   const handlePlay = () => {
     dispatch(setActiveSong({ song, key, data, index }));
     dispatch(playPause(true));
@@ -30,8 +32,21 @@ export const Lsongs = ({
   };
 
   const handleSongHeart = () => {
-    setIsLiked(!isLiked);
-    setOnHeard((prev)=>!prev)
+    const urlDisLiked = "http://localhost:8000/api/v1/auth/removeSongsLiked";
+    const data = { id: profile.user.id, songKey: key };
+
+    fetch(urlDisLiked, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setOnHeard(!onHeard);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div className="main-container-movil mt-6  ">
@@ -66,7 +81,7 @@ export const Lsongs = ({
         </div>
 
         <div className="conteiner-play-pause-ilike flex gap-6 ">
-          <AddSongHearts handleSongHeart={handleSongHeart} isLiked={isLiked} />
+          <AddSongHearts handleSongHeart={handleSongHeart} isLiked={true} />
 
           <div className="flex justify-center items-center w-[35px] h-[35px] rounded-full bg-white/70 text-[#2a2a80] cursor-pointer ">
             {isPlaying && activeSong.key === key ? (

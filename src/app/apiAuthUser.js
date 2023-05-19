@@ -6,16 +6,19 @@ export const apiAuthUsers = createApi({
     baseUrl: "http://localhost:8000/api/v1/auth/",
     credentials: "include",
   }),
-
+  
   endpoints: (builder) => ({
     getGoogleUsers: builder.query({
       query: () => `login/success`,
+     
     }),
     getUsers: builder.query({
       query: () => `user`,
+    
     }),
     getLikedSongs: builder.query({
       query: (userId) => `songs/${userId}`,
+    
     }),
   }),
 });

@@ -1,6 +1,4 @@
-export const FetchSong = (data) => {
-    console.log(data);
-    const url = "http://localhost:8000/api/v1/auth/songs";
+export const FetchSong =  (data,url) => {
     fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -11,5 +9,7 @@ export const FetchSong = (data) => {
       .then((data) => {
         console.log(data);
       })
-      .catch((error) => console.log(error));
-}
+      .catch((error) => console.log(error))
+      
+   
+    }
