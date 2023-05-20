@@ -3,7 +3,7 @@ import {BsGithub} from 'react-icons/bs'
 export const ButtonGoogle = ({text}) => {
 
   const googleCallServer = () => {
-      window.open("http://localhost:8000/api/v1/auth/google", "_self");
+      window.open("https://api-rest-node-express.up.railway.app/api/v1/auth/google", "_self");
  }
  
 

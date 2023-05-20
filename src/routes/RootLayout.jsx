@@ -17,7 +17,7 @@ export const RootLayout = () => {
   const dispatch = useDispatch();
   const { data: topChart, isLoading, isError, error } = useGetTopChartsQuery();
   const { data: socialData } = useGetGoogleUsersQuery();
-  const { data: userData } = useGetUsersQuery();
+  const { data: userData,error:userError } = useGetUsersQuery();
   const updateUserState = () => {
     if (userData && !userData.Error) {
       dispatch(setCredentials(userData));
@@ -28,6 +28,7 @@ export const RootLayout = () => {
     }
   };
   updateUserState();
+  console.log(userData,userError);
   const topChart6 = topChart?.slice(0, 6);
 
   const { activeSong, isPlaying } = useSelector((state) => state.player)

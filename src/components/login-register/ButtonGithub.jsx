@@ -3,7 +3,7 @@ import { BsGithub } from "react-icons/bs";
 
 export const ButtonGithub = ({ text }) => {
     const githubCallServer = () => {
-        window.open("http://localhost:8000/api/v1/auth/github", "_self");
+        window.open("https://api-rest-node-express.up.railway.app/api/v1/auth/github", "_self");
    }
   return (
     <button onClick={githubCallServer}

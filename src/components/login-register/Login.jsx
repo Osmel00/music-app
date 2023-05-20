@@ -24,7 +24,8 @@ export const Login = () => {
   const onSubmit = async (formData, e) => {
     e.target.reset();
     try {
-      const url = "http://localhost:8000/api/v1/auth/login";
+       //const url = "http://localhost:8000/api/v1/auth/login";
+       const url = "https://api-rest-node-express.up.railway.app/api/v1/auth/login"
       fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
