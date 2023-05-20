@@ -31,22 +31,24 @@ export const Lsongs = ({
     dispatch(playPause(false));
   };
 
-  const handleSongHeart = () => {
+  const handleSongHeart = async () => {
     const urlDisLiked = "http://localhost:8000/api/v1/auth/removeSongsLiked";
     const data = { id: profile.user.id, songKey: key };
-
-    fetch(urlDisLiked, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setOnHeard(!onHeard);
-      })
-      .catch((error) => console.log(error));
+    const fetch = await FetchSong(data,urlDisLiked);
+    if (fetch){setOnHeard(!onHeard)}
+    console.log(fetch);
+    // fetch(urlDisLiked, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   credentials: "include",
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setOnHeard(!onHeard);
+    //   })
+    //   .catch((error) => console.log(error));
   };
   return (
     <div className="main-container-movil mt-6  ">

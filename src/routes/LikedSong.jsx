@@ -87,7 +87,7 @@ export const LikedSong = () => {
             <h1 className="text-3xl lg:text-6xl xl:text-8xl pt-3">
               Liked Songs
             </h1>
-            <p className="text-sm lg:text-base pt-10">Osmel Faure</p>{" "}
+            <p className="text-sm lg:text-base pt-10">{`${profile.user?.name} - ${dataSong?.length} songs`}</p>{" "}
             {/** aqui cantidad de canciones y el nombre del usuario */}
           </div>
         </div>
