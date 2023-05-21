@@ -40,7 +40,7 @@ export const AvatarLogin = () => {
   const handleLogout = () => {
     try {
       fetch("http://localhost:8000/api/v1/auth/logout", {
-        credentials: "include",
+        credentials: "same-origin",
       })
         .then((response) => response.json()).then(()=>{
           dispatch(setCredentials({ profile: null }));
