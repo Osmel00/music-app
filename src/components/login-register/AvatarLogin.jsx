@@ -39,7 +39,7 @@ export const AvatarLogin = () => {
 
   const handleLogout = () => {
     try {
-      fetch("http://localhost:8000/api/v1/auth/logout", {
+      fetch("https://api-rest-node-express.up.railway.app/api/v1/auth/logout", {
         credentials: "include",
       })
         .then((response) => response.json()).then(()=>{
