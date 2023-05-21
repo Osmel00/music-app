@@ -42,11 +42,10 @@ export const AvatarLogin = () => {
       fetch("https://api-rest-node-express.up.railway.app/api/v1/auth/logout", {
         credentials: "include",
       })
-        .then((response) => response.json()).then((data)=>{
+        .then((response) => response.json()).then(()=>{
           dispatch(setCredentials({ profile: null }));
           dispatch(setIsLogin({ isLogin: false }));
-          console.log(data);
-          window.location.replace("https://felify-music.vercel.app")
+          window.location.replace("/")
         })
         .catch((error) => console.log(error));
       
