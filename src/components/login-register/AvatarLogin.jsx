@@ -46,7 +46,7 @@ export const AvatarLogin = () => {
           dispatch(setCredentials({ profile: null }));
           dispatch(setIsLogin({ isLogin: false }));
           console.log(data);
-          //window.location.replace("/")
+          window.location.replace("https://felify-music.vercel.app")
         })
         .catch((error) => console.log(error));
       
