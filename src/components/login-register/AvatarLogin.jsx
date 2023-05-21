@@ -42,9 +42,10 @@ export const AvatarLogin = () => {
       fetch("https://api-rest-node-express.up.railway.app/api/v1/auth/logout", {
         credentials: "include",
       })
-        .then((response) => response.json()).then(()=>{
+        .then((response) => response.json()).then((data)=>{
           dispatch(setCredentials({ profile: null }));
           dispatch(setIsLogin({ isLogin: false }));
+          console.log(data);
           window.location.replace("/")
         })
         .catch((error) => console.log(error));
