@@ -54,8 +54,8 @@ const MusicPlayer = ({ hidden }) => {
   };
   //*estoy aqui
   const handleSongHeart = () => {
-    const urlLiked = "http://localhost:8000/api/v1/auth/songs";
-    const urlDisLiked = "http://localhost:8000/api/v1/auth/removeSongsLiked";
+    const urlLiked = "https://api-rest-node-express.up.railway.app/api/v1/auth/songs";
+    const urlDisLiked = "https://api-rest-node-express.up.railway.app/api/v1/auth/removeSongsLiked";
     if (!isLiked) {
       FetchSong({ userId: profile.user.id, activeSong }, urlLiked);
     } else {

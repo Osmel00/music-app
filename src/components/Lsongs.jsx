@@ -32,23 +32,12 @@ export const Lsongs = ({
   };
 
   const handleSongHeart = async () => {
-    const urlDisLiked = "http://localhost:8000/api/v1/auth/removeSongsLiked";
+    const urlDisLiked = "https://api-rest-node-express.up.railway.app/api/v1/auth/removeSongsLiked";
     const data = { id: profile.user.id, songKey: key };
     const fetch = await FetchSong(data,urlDisLiked);
     if (fetch){setOnHeard(!onHeard)}
-    console.log(fetch);
-    // fetch(urlDisLiked, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   credentials: "include",
-    //   body: JSON.stringify(data),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setOnHeard(!onHeard);
-    //   })
-    //   .catch((error) => console.log(error));
+    
+    
   };
   return (
     <div className="main-container-movil mt-6  ">

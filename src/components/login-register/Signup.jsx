@@ -25,7 +25,7 @@ export const Signup = () => {
   const onSubmit = (formData, e) => {
     e.target.reset();
     try {
-      const url = "http://localhost:8000/api/v1/auth/signup";
+      const url = "https://api-rest-node-express.up.railway.app/api/v1/auth/signup";
 
       fetch(url, {
         method: "POST",
