@@ -16,7 +16,7 @@ export const ButtonLikedS = () => {
         variant: "info", //variant="success",error,info,warning,
       });
     }
-    navigate('/collection/tracks');
+    navigate('/collection/tracks',true);
     
    
   };
